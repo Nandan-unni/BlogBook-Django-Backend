@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/key_blogs/int_styles.css' %}">
+    <link rel="icon" href="{% static 'images/key_blogs/icon.png' %}">
+    <!--link rel="stylesheet" href="../../static/css/key_blogs/int_styles.css"-->
+    <!--link rel="icon" href="../../static/images/key_blogs/icon.png"-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feeds | Key Blogs</title>
+</head>
+
+<body>
+    <div class="header">
+        <img src="<% static 'images/key_blogs/default_profile.png' %>" class="navdp" align="left" />
+        <label>Key Blogs</label>
+        <a href="/logout/?next=/login"><b>Log Out</b></a>
+        <a href="/profile/"><b>Profile</b></a>
+        <a href="/create/"><b>+ Create Blog</b></a><br/>
+        <div class="progress-container">
+            <div class="progress-bar" id="myBar"></div>
+        </div>  
+    </div>
+    <br/><br/><br/><br/><br/><br/>
+
+
+    {% if blogs %}
+        {% for blog in blogs %}
+            <div class="blog">
+                <br/><h3>{{ blog.title }}</h3>
+                <i>By <a href="#"><b>{{ blog.author }}</b></a></i>
+                <p>
+                {{ blog.content }}
+                </p>
+                <like><a href="javascript:void(0)" id="blog.id" name="like" onclick=likeBlog(blog.id)>👍🏼</a></like>
+                <br/><br/>
+            </div><br/><br/>
+        {% endfor %}
+    {% else %}
+        <p>No Blogs are available. Follow some tags to get new blogs.</p>
+    {% endif %}
+
+
+    <div class="blog">
+        <br/><h3>Sample Title</h3>
+        <i>By <a href="#"><b>Key Blogs Developer</b></a></i>
+        <p>
+        This is the sample content of a sample blog written by a sample blog writer. This sample blog
+        is created for Developer experience. Please ignore this blog and enjoy your experience with key Blogs.
+        This is the sample content of a sample blog written by a sample blog writer. This sample blog
+        is created for Developer experience. Please ignore this blog and enjoy your experience with key Blogs.
+        This is the sample content of a sample blog written by a sample blog writer. This sample blog
+        is created for Developer experience. Please ignore this blog and enjoy your experience with key Blogs.
+        </p>
+        <like><a href="javascript:void(0)" id="2" name="like" onclick=likeBlog(2)>👍🏼</a></like>
+        <br/><br/>
+    </div><br/><br/>
+
+    <br/><br/>
+
+    <script>
+        function likeBlog(x) {
+            if (document.getElementById(x).innerHTML == "👍") {
+                document.getElementById(x).innerHTML = "👍🏼";
+            }
+            else {
+                document.getElementById(x).innerHTML = "👍";
+            }
+        }
+    </script>
+    <script src="../../static/js/key_blogs/navBarFixer.js"></script>
+</body>
+
+</html>

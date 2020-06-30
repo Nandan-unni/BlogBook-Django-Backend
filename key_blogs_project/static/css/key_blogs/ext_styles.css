@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Open+Sans&family=Ubuntu&display=swap');
+/*
+font-family: 'Electrolize', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+*/
+body {
+    overflow-x: hidden;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+
+.headtab{
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    height: 100px;
+    width: 100%;
+    margin-left: -8px;
+    margin-top: -8px;
+    background-color: lightblue;
+    color: indigo;
+    line-height: 10px;
+    position: relative;
+}
+.head{
+    font-family: 'Electrolize', sans-serif;
+    font-size: 25px;
+    margin-left: 100px;
+    justify-content: space-between;
+}
+.head h1{
+    text-shadow: 3px 3px rgb(110, 220, 253);
+    letter-spacing: 5px;
+}
+.head i{
+    font-family: 'Chathura', sans-serif;
+    font-size: 20px;
+}
+.navbar{
+    overflow: hidden;
+    background-color: indigo;
+    margin-left: -8px;
+    width: 102%;
+    box-shadow: 0 4px 4px grey;
+}
+.navbar a{
+    color: white;
+    text-decoration: none;
+    float: right;
+    display: block;
+    text-align: center;
+    padding: 30px 50px;
+    margin-right: 20px;
+    width: 100px;
+}
+.navbar a:hover{
+    background-color: lightblue;
+    color: indigo;
+}
+.fix{
+    position: fixed;
+    top: 0;
+    width: 102%;
+}
+
+
+.portal input[type='text'], input[type='password'], select{
+    background-color: white;
+    padding: 10px 50px;
+    border-radius: 10px;
+    margin-left: 18%;
+    border: 1px solid black;
+    outline: indigo;
+}
+.portal h1{
+    font-family: 'Ubuntu', sans-serif;
+    color: indigo;
+    margin-left: 36%;
+}
+.portal li {
+    color: rgb(200, 0, 0);
+    margin-left: 5%;
+    margin-right: 5%;
+    
+}
+.portal input[type='submit'] {
+    padding: 10px 25px;
+    border-radius: 10px;
+    border: 2px solid indigo;
+    background-color: white;
+    color: darkmagenta;
+    margin-left: 36%;
+    outline: none;
+}
+.portal input[type='submit']:hover {
+    border: 4px solid indigo;
+    background-color: darkmagenta;
+    color: white;
+    cursor: pointer;
+}
+.signup {
+    height: 550px;
+    width: 400px;
+    border-radius: 10px;
+    margin-left: 75vh;
+    margin-top: 10vh;
+    border: 2px solid indigo;
+}
+.signin {
+    height: 400px;
+    width: 400px;
+    border-radius: 10px;
+    margin-left: 75vh;
+    margin-top: 25vh;
+    border: 2px solid indigo;
+}

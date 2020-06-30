@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/key_blogs/int_styles.css' %}">
+    <link rel="icon" href="{% static 'images/key_blogs/icon.png' %}">
+    <!--link rel="stylesheet" href="../../static/css/key_blogs/int_styles.css"-->
+    <!--link rel="icon" href="../../static/images/key_blogs/icon.png"-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile | Key Blogs</title>
+</head>
+
+<body>
+    <div class="header">
+        <label>Key Blogs</label>
+        <a href="logout/"><b>Log Out</b></a>
+        <a href="feeds/"><b>Home</b></a>
+        <div class="progress-container">
+            <div class="progress-bar" id="myBar"></div>
+        </div>  
+    </div>
+    <br/><br/><br/><br/><br/><br/>
+    <div class="profile">
+        <div class="profile-pic">
+            <img src="{% static '/images/key_blogs/default_profile.png' %}" align='left' hspace=100>
+        </div>
+        <div class="profile-data">
+            <br/>
+            <h1>Nandanunni</h1>
+            <i>unni</i><br/><br/>
+            <label>nandanunni@keyblogs.in</label><br/><br/>
+            <small>20 Blogs</small><br/>
+            <br/><br/><br/><br/><br/><br/>
+        </div><hr>
+        <div class="profile-feed">
+            <h2>Blogs</h2>
+            <hr><br/>
+            <li>Title 1</li><br/>
+            <li>Title 2</li><br/>
+            <li>Title 3</li><br/>
+            <li>Title 4</li><br/>
+        </div>
+    </div>
+</body>
+
+</html>
