@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import UserForm, WriterForm, BlogCreationForm
 from .models import User, Blog
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from datetime import date
 
@@ -48,3 +48,8 @@ def create_blog(request):
     else:
         form = BlogCreationForm()
     return render(request, 'key_blogs/create.html', {'form':form})
+
+@login_required
+def profile_view(request):
+    user = request.user
+    return render(request, 'key_blogs/profile.html', {'user':user})

@@ -15,8 +15,8 @@
 <body>
     <div class="header">
         <label>Key Blogs</label>
-        <a href="logout/"><b>Log Out</b></a>
-        <a href="feeds/"><b>Home</b></a>
+        <a href="/logout/"><b>Log Out</b></a>
+        <a href="/feeds/"><b>Home</b></a>
         <div class="progress-container">
             <div class="progress-bar" id="myBar"></div>
         </div>  
@@ -28,10 +28,10 @@
         </div>
         <div class="profile-data">
             <br/>
-            <h1>Nandanunni</h1>
-            <i>unni</i><br/><br/>
-            <label>nandanunni@keyblogs.in</label><br/><br/>
-            <small>20 Blogs</small><br/>
+            <h1>{{ user.first_name }}</h1>
+            <i>{{ user.username }}</i><br/><br/>
+            <label>no email id found</label><br/><br/>
+            <small>4 Blogs</small><br/>
             <br/><br/><br/><br/><br/><br/>
         </div><hr>
         <div class="profile-feed">
