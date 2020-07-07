@@ -5,7 +5,7 @@
 **Backend** : *Django* <br/>
 **Frontend** : *Django Templates (HTML & CSS)* <br/>
 **Database** : *PostgreSQL* <br/>
-**Install the requirements** : <br/>
+**Install the requirements** : 
 ```cmd
 pip install -r requirements.txt
 ```
