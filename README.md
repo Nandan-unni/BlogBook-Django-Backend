@@ -1,2 +1,11 @@
 # Django-Blogging-App
-Django Project
+### A blogging app - 'KEY BLOGS' using Django Framework.
+<br/>
+
+**Backend** : *Django* <br/>
+**Frontend** : *Django Templates (HTML & CSS)* <br/>
+**Database** : *PostgreSQL* <br/>
+**Install the requirements** : <br/>
+```cmd
+pip install -r requirements.txt
+```
