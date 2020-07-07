@@ -135,7 +135,15 @@ textarea {
 }
 like {
     margin-left: 5%;
+    font-size: 20px;
+}
+like:hover {
+    color: magenta;
+}
+like input[type='submit'] {
     font-size: 25px;
+    border: none;
+    outline: none;
 }
 
 .profile {

@@ -27,49 +27,30 @@
 
 
     {% if blogs %}
+
         {% for blog in blogs %}
             <div class="blog">
                 <br/><h3>{{ blog.title }}</h3>
                 <i>By <a href="#"><b>{{ blog.author }}</b></a></i>
-                <p>
-                {{ blog.content }}
-                </p>
-                <like><a href="javascript:void(0)" id="blog.id" name="like" onclick=likeBlog(blog.id)>👍🏼</a></like>
+                <p>{{ blog.content }}</p>
+                    <form action="{% url 'like' blog.id %}" method="post">
+                        {% csrf_token %} 
+                        <like>{{ blog.like_set.count }}
+                        <input type="submit" value="👍🏼"></like>
+                    </form>
                 <br/><br/>
             </div><br/><br/>
         {% endfor %}
+
+
     {% else %}
-        <p>No Blogs are available. Follow some tags to get new blogs.</p>
+        <div class="blog">
+            <br/><h3>No Blogs are available.</h3>
+            <p>Follow some tags to get new blogs.</p>
+            <br/><br/>
+        </div>
     {% endif %}
 
-
-    <div class="blog">
-        <br/><h3>Sample Title</h3>
-        <i>By <a href="#"><b>Key Blogs Developer</b></a></i>
-        <p>
-        This is the sample content of a sample blog written by a sample blog writer. This sample blog
-        is created for Developer experience. Please ignore this blog and enjoy your experience with key Blogs.
-        This is the sample content of a sample blog written by a sample blog writer. This sample blog
-        is created for Developer experience. Please ignore this blog and enjoy your experience with key Blogs.
-        This is the sample content of a sample blog written by a sample blog writer. This sample blog
-        is created for Developer experience. Please ignore this blog and enjoy your experience with key Blogs.
-        </p>
-        <like><a href="javascript:void(0)" id="2" name="like" onclick=likeBlog(2)>👍🏼</a></like>
-        <br/><br/>
-    </div><br/><br/>
-
-    <br/><br/>
-
-    <script>
-        function likeBlog(x) {
-            if (document.getElementById(x).innerHTML == "👍") {
-                document.getElementById(x).innerHTML = "👍🏼";
-            }
-            else {
-                document.getElementById(x).innerHTML = "👍";
-            }
-        }
-    </script>
     <script src="../../static/js/key_blogs/navBarFixer.js"></script>
 </body>
 

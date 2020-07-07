@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/key_blogs/ext_styles.css' %}">
+    <link rel="icon" href="{% static 'images/key_blogs/icon.png' %}">
+    <!--link rel="stylesheet" href="../../static/css/key_blogs/ext_styles.css">
+    <link rel="icon" href="../../static/images/key_blogs/icon.png"-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Key Blogs</title>
+</head>
+
+<body>
+    <div class="portal signin">
+        <h1>Log In</h1><br/>
+        <form method="post">
+            {% csrf_token %}
+            <input type="file" name="dp" accept="image/*"><br/><br/><br/>
+            <input type="submit" value="upload">
+            {% for field in form %}
+            {% for error in field.errors %}
+                <p><li>{{ error }}</li></p>
+            {% endfor %}
+            {% endfor %}
+        </form>
+    </div>
+</body>
+
+</html>

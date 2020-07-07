@@ -15,7 +15,7 @@
 <body>
     <div class="header">
         <label>Key Blogs</label>
-        <a href="/logout/"><b>Log Out</b></a>
+        <a href="/logout/?next=/login"><b>Log Out</b></a>
         <a href="/feeds/"><b>Home</b></a>
         <div class="progress-container">
             <div class="progress-bar" id="myBar"></div>
@@ -30,17 +30,17 @@
             <br/>
             <h1>{{ user.first_name }}</h1>
             <i>{{ user.username }}</i><br/><br/>
-            <label>no email id found</label><br/><br/>
-            <small>4 Blogs</small><br/>
+            <label>no email id found {{user.writer.dp}}</label><br/><br/>
+            <small>{{ user.blog_set.count }} Blogs</small><br/>
+            <a href="/dpupload/"><button>Upload Profile Pic</button></a>
             <br/><br/><br/><br/><br/><br/>
         </div><hr>
         <div class="profile-feed">
             <h2>Blogs</h2>
             <hr><br/>
-            <li>Title 1</li><br/>
-            <li>Title 2</li><br/>
-            <li>Title 3</li><br/>
-            <li>Title 4</li><br/>
+            {% for blog in user.blog_set.all %}
+                <li>{{ blog }}</li><br/>
+            {% endfor %}
         </div>
     </div>
 </body>
