@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Open+Sans&family=Ubuntu&display=swap');
+/*
+font-family: 'Electrolize', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+*/
+body {
+    overflow-x: hidden;
+    font-family: 'Ubuntu', sans-serif;
+}
+.headtab {
+    background-color: indigo;
+    margin-left: -1vh;
+    margin-top: -1vh;
+    height: 10vh;
+    width: 100vw;
+    align-items: center;
+    display: flex;
+    border-bottom: 2px solid darkblue;
+    position: fixed;
+    box-shadow: 0vh 1vh 1vh gray;
+}
+.headtab h1 {
+    color: rgb(14, 176, 240);
+    text-shadow: 0.5vh 0.5vh 0.5vh darkblue;
+    font-family: 'Electrolize', sans-serif;
+    font-size: 5vh;
+    margin-left: 10vw;
+}
+.navtab {
+    line-height: 5vh;
+    padding-top: 15vh;
+    padding-left: 5vh;
+}
+.navtab a {
+    background-color: rgb(14, 176, 240);
+    color: white;
+    padding: 2vh 4vw;
+    text-decoration: none;
+    border-radius: 5px;
+    border-bottom: 2px solid black;
+}
+.navtab a:hover {
+    background-color: indigo;
+    border: 2px solid black;
+}
+.navtab a:active {
+    background-color: white;
+    color: indigo;
+    outline: none;
+}
+.ind-img {
+    max-width: 100%;
+    height: auto;
+}
+.port {
+    padding-top: 15vh;
+}
+.portal {
+    border: 3px solid indigo;
+    padding: 3vh 3vw;
+    border-radius: 10px;
+    margin: auto;
+    box-shadow: 0.5vh 0.5vh 0.5vh gray;
+    height: fit-content;
+    width: fit-content;
+}
+.portal input[type='text'], input[type='email'], input[type='password'] {
+    border: 1px solid indigo;
+    border-bottom: 3px solid indigo;
+    border-radius: 5px;
+    height: 4vh;
+    width: 35vh;
+    font-size: 1.8vh;
+    outline: none;
+}
+.portal input[type='submit'] {
+    padding: 1vh 1vw;
+    font-weight: 900;
+    font-size: 1.8vh;
+    background-color: indigo;
+    color: white;
+    border: 3px solid indigo;
+}
+.portal input[type='submit']:hover {
+    background-color: indigo;
+    border: 3px solid indigo;
+    color: rgb(14, 176, 240);
+    border-radius: 5px;
+}
+.portal h2 {
+    font-size: 3vh;
+}
+.portal label {
+    font-size: 1.8vh;
+}
+.portal li {
+    color: rgb(219, 0, 0);
+    font-size: 1.8vh;
+}
+.edit-acc button{
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+    height: 5vh;
+    width: 18vh;
+    font-size: 1.8vh;
+    border: none;
+    color: rgb(0, 129, 209);
+}
+.edit-acc button:hover {
+    background-color: rgb(0, 129, 209);
+    color: white;
+}
+.dp-display img {
+    height: 25vh;
+    width: 25vh;
+    border-radius: 100%;
+    border: 1px solid black;
+    background-size: cover;
+    background-position: center;
+  }
+.inputfile {
+    height: 0.1px;
+    width: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+}
+.propic label {
+    color: rgb(0, 129, 209);
+}
+.propic label:hover {
+    cursor: pointer;
+    border: 1.5px solid rgb(0, 129, 209);
+    padding: 1vh;
+    color: rgb(0, 129, 209);
+}

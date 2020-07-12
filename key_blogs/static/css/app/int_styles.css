@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Open+Sans&family=Ubuntu&display=swap');
+/*
+font-family: 'Electrolize', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+*/
+body {
+    overflow-x: hidden;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+
+.headtab{
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    height: 8vh;
+    width: 100%;
+    margin-left: -8px;
+    margin-top: -8px;
+    background-color: rgb(215, 240, 255);
+    color: indigo;
+    position: relative;
+}
+.head{
+    font-family: 'Electrolize', sans-serif;
+    font-size: 3vh;
+    margin-left: 10vw;
+    justify-content: space-between;
+}
+.head h1{
+    text-shadow: 3px 3px lightskyblue;
+    letter-spacing: 5px;
+}
+.navbar{
+    overflow: hidden;
+    background-color: indigo;
+    margin-left: -8px;
+    width: 100vw;
+    box-shadow: 0 4px 4px grey;
+}
+.navbar a{
+    color: white;
+    text-decoration: none;
+    float: right;
+    display: block;
+    text-align: center;
+    padding: 2vh;
+    margin-right: 0vw;
+    width: 10vh;
+    font-size: 1.6vh;
+}
+.navbar a:hover{
+    background-color: lightskyblue;
+    color: indigo;
+}
+.navbarpro {
+    overflow: hidden;
+    background-color: indigo;
+    margin-left: -1vh;
+    margin-top: -1vh;
+    width: 100vw;
+    box-shadow: 0 4px 4px grey;
+}
+.navbarpro a{
+    color: white;
+    text-decoration: none;
+    float: right;
+    display: block;
+    text-align: center;
+    padding: 2vh;
+    margin-right: 0vw;
+    width: 10vh;
+    font-size: 1.6vh;
+}
+.navbarpro a:hover{
+    background-color: lightskyblue;
+    color: indigo;
+}
+.fix{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+}
+
+
+.blogs {
+    padding-top: 12vh;
+}
+.blog {
+    background-color: rgb(182, 215, 226);
+    box-shadow: 0.5vh 0.5vh 0.5vh rgb(185, 185, 185);
+    height: auto;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding: 3vh 3vw;
+    border-radius: 10px;
+}
+.blog h3 {
+    color: indigo;
+    font-size: 3vh;
+}
+.blog a {
+    text-decoration: none;
+    color: darkmagenta;
+    font-size: 2vh;
+    text-align: justify;
+}
+.blog p {
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.8vh;
+    margin-left: 3vw;
+}
+
+
+.profile {
+    padding-top: 8vh;
+    padding-left: 1vw;
+    padding-right: 5vw;
+}
+.prof-pic img{
+    border-radius: 100%;
+    height: 25vh;
+    width: 25vh;
+    border: 1px solid black;
+}
+.prof-dtl {
+    margin-top: -3vh;
+    margin-left: 5vw;
+}
+.prof-dtl h2 {
+    font-size: 3.5vh;
+    color: rgb(0, 129, 209);
+}
+.prof-dtl img {
+    height: 3vh;
+    width: 3vh;
+}
+.prof-dtl p {
+    color: rgb(0, 49, 80);
+}
+.prof-dtl i, p {
+    margin-left: 1vw;
+    margin-right: 1vw;
+    font-size: 1.8vh;
+}
+.hr {
+    background-color: black;
+    height: 0.5vh;
+}
+.prof-butt {
+    padding-top: 5vh;
+}
+.prof-butt button {
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+    height: 6vh;
+    width: 15vh;
+    font-size: 1.8vh;
+}
+.delete-acc button{
+    float: right;
+    border: 3px solid rgb(211, 0, 0);
+    color: rgb(211, 0, 0);
+}
+.delete-acc button:hover {
+    background-color: rgb(211, 0, 0);
+    color: white;
+}
+.edit-acc button{
+    margin-left: 5vh;
+    border: 3px solid rgb(0, 129, 209);
+    color: rgb(0, 129, 209);
+}
+.edit-acc button:hover {
+    background-color: rgb(0, 129, 209);
+    color: white;
+}
+.blog-list h2 {
+    margin-left: 5vh;
+    color: indigo;
+}
+.blog-list a{
+    margin-left: 8vh;
+    text-decoration: none;
+    color: black;
+}
+.blog-list a:hover {
+    color: rgb(0, 129, 209);
+}
+.port {
+    padding-top: 10vh;
+}
+.portal {
+    border: 3px solid indigo;
+    padding: 5vh 5vw;
+    border-radius: 10px;
+    margin: auto;
+    box-shadow: 0.5vh 0.5vh 0.5vh gray;
+    height: fit-content;
+    width: fit-content;
+}
+.portal h2 {
+    color: rgb(0, 129, 209)
+}
+.portal input[type='text'] {
+    border: 1px solid rgb(0, 129, 209);
+    border-bottom: 3px solid rgb(0, 129, 209);
+    border-radius: 5px;
+    height: 4vh;
+    width: 35vh;
+    outline: none;
+    font-size: 1.8vh;
+}
+.portal textarea {
+    font-family: 'Open Sans', sans-serif;
+    width: 60vw;
+    height: 40vh;
+    border-radius: 5px;
+    border: 1px solid rgb(0, 129, 209);
+    border-bottom: 3px solid rgb(0, 129, 209);
+    resize: none;
+    outline: none;
+    font-size: 1.8vh;
+}
+.portal input[type='submit'] {
+    padding: 1vh 1vw;
+    font-weight: 900;
+    font-size: 1.8vh;
+    background-color: indigo;
+    color: white;
+    border: 3px solid indigo;
+}
+.portal input[type='submit']:hover {
+    background-color: indigo;
+    border: 3px solid indigo;
+    color: rgb(14, 176, 240);
+    border-radius: 5px;
+}
+.portal label {
+    font-size: 1.8vh;
+}

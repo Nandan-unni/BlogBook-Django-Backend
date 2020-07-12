@@ -3,6 +3,10 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 SECRET_KEY = '=g#q8kmb3sg-y1nu@z15ox5h!8mou3mgv5jyuc669fd%!^tk*p'
@@ -35,7 +39,7 @@ ROOT_URLCONF = 'key_blogs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -47,6 +51,8 @@ TEMPLATES = [
         },
     },
 ]
+
+STATICFILES_DIRS = [STATIC_DIR, ]
 
 WSGI_APPLICATION = 'key_blogs.wsgi.application'
 

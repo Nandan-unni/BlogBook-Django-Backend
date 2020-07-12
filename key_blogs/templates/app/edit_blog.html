@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./int_styles.css">
+    <link rel="icon" href="./icon.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+    <title>Edit Blog | Key Blogs</title>
+</head>
+
+<body>
+    <div id="navbar" class="navbarpro">
+        <a href="/accounts/logout/?next=/login"><b>Log Out</b></a>
+        <a href="/blogs/view/"><b>Home</b></a>
+    </div>
+
+    <div class="port">
+    <div class="portal">
+        <center><h2>Edit Blog</h2></center><br/>
+        <form method="POST">
+            <label for="name">Title : </label><br/>
+            <input type="text" name='title' id="title" value="Django: The Python Web Framework"><br/><br/>
+            <label for="email">Content : </label><br/>
+            <textarea id="content" name="content">Content of blog</textarea><br/><br/><br/>
+            <center><input type="submit" value="Save Changes"></center>
+        </form>
+    </div>
+    </div>
+    <br/>
+</body>
+
+</html>
