@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="./int_styles.css">
-    <link rel="icon" href="./icon.png">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/app/int_styles.css' %}">
+    <link rel="icon" href="{% static 'images/app/icon.png' %}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
     <title>Edit Blog | Key Blogs</title>
@@ -19,6 +20,7 @@
     <div class="portal">
         <center><h2>Edit Blog</h2></center><br/>
         <form method="POST">
+            {% csrf_token %}
             <label for="name">Title : </label><br/>
             <input type="text" name='title' id="title" value="Django: The Python Web Framework"><br/><br/>
             <label for="email">Content : </label><br/>

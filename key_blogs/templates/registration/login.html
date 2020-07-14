@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="./ext_styles.css">
-    <link rel="icon" href="./icon.png">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/app/ext_styles.css' %}">
+    <link rel="icon" href="{% static 'images/app/icon.png' %}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
     <title>Login | Key Blogs</title>
@@ -15,12 +16,23 @@
     <div class="portal">
         <center><h2>Login</h2></center><br/>
         <form method="POST">
+            {% csrf_token %}
             <label for="email">Email : </label><br/>
             <input type="email" name="email" id="email" placeholder="Enter your email id"><br/><br/>
             <label for="password">Password : </label><br/>
             <input type="password"  name="password" id="password" placeholder="Enter your password"><br/><br/>
-            <li>This is the first error.</li>
-            <li>Thsi is the second error. </li>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    {% if 'This field is required.' == error %}
+                        <li>{{ field.label }} : {{ error }}</li>
+                    {% else %}
+                        <li>{{ error }}</li>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            {% if err %}
+                <li>{{ err }}</li>
+            {% endif %}
             <br/>
             <center><input type="submit" value="Login"></center><br/>
         </form>

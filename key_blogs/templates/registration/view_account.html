@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="./int_styles.css">
-    <link rel="icon" href="./icon.png">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/app/int_styles.css' %}">
+    <link rel="icon" href="{% static 'images/app/icon.png' %}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
     <title>Feeds | Key Blogs</title>
@@ -19,18 +20,22 @@
     <div class="profile">
     
         <div class="prof-pic">
-            <img src="./index.jpg" align='left' hspace=100>
+            <img src="{% static 'images/app/index.jpg' %}" align='left' hspace=100>
         </div>
     
         <div class="prof-dtl">
-            <h2>Lawrence Journal-World</h2>
-            <img src="./bio.jpg" align='left' hspace=10><p>123456789.123456789.123456789.123456789.123456789.
-                123456789.123456789.123456789.123456789.123456789.
-                123456789.123456789.123456789.123456789.123456789.
+            <h2>{{ user.name }}</h2>
+            <img src="{% static 'images/app/bio.jpg' %}" align='left' hspace=10>
+            <p>
+                {% if user.bio %}
+                    {{ user.bio }}
+                {% else %}
+                    No bio.
+                {% endif %}
             </p>
-            <img src="./pen-name.png" align='left' hspace=10><i>python_writer</i><br/><br/>
-            <img src="./mail.png" align='left' hspace=10><i>python@python.org</i><br/><br/>
-            <img src="./blogs.png" align='left' hspace=10><i>1 Blogs</i><br/><br/>
+            <img src="{% static 'images/app/pen-name.png' %}" align='left' hspace=10><i>python_writer</i><br/><br/>
+            <img src="{% static 'images/app/mail.png' %}" align='left' hspace=10><i>{{ user.email }}</i><br/><br/>
+            <img src="{% static 'images/app/blogs.png' %}" align='left' hspace=10><i>1 Blogs</i><br/><br/>
         </div>
     
         <div class="prof-butt">
@@ -50,7 +55,7 @@
         <a href="#">&starf; &nbsp; Django: The Python Web Framework</a><br/><br/><hr><br/>
         <a href="#">&starf; &nbsp; Django: The Python Web Framework</a><br/><br/><hr><br/>
     </div>
-    <script src="./fixNavBar.js"></script>
+    <script src="{% static 'js/app/fixNavBar.js' %}"></script>
 </body>
 
 </html>

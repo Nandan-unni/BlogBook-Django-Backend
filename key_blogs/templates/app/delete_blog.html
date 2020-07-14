@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="./ext_styles.css">
-    <link rel="icon" href="./icon.png">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/app/ext_styles.css' %}">
+    <link rel="icon" href="{% static 'images/app/icon.png' %}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
     <title>Delete Blog | Key Blogs</title>
@@ -15,6 +16,7 @@
     <div class="portal">
         <center><h2>Delete Blog</h2></center><br/>
         <form method="POST">
+            {% csrf_token %}
             <label>Hey Lawrence, Are you sure you want to delete the blog 'Django: The Python web framework'.</label><br/><br/>
             <br/>
             <center><input type="submit" value="Confirm Delete"></center><br/>

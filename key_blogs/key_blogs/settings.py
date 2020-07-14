@@ -1,6 +1,6 @@
 import os
 
-
+AUTH_USER_MODEL = 'app.Writer'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
@@ -12,7 +12,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = '=g#q8kmb3sg-y1nu@z15ox5h!8mou3mgv5jyuc669fd%!^tk*p'
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.43.63', 'localhost']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -95,3 +95,4 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+LOGIN_URL = '/login/'

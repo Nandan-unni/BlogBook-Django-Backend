@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="./ext_styles.css">
-    <link rel="icon" href="./icon.png">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/app/ext_styles.css' %}">
+    <link rel="icon" href="{% static 'images/app/icon.png' %}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
     <title>Profile Picture | Key Blogs</title>
@@ -15,6 +16,7 @@
     <div class="portal">
         <center><h2>New Profile Picture</h2></center>
         <form method="POST">
+          {% csrf_token %}
           <input type="file" accept="image/*" name="file" id="file" onchange="loadImage(event)" class="inputfile"
             />
           <div class="propic"><center><label for="file"><b>Choose a file</b></label></center></div>
@@ -25,7 +27,7 @@
     </div>
     </div>
 
-    <script></script>
+    <script src="{% static 'js/app/displayUploadedImage.js' %}"></script>
 </body>
 
 </html>

@@ -7,22 +7,22 @@
     <link rel="icon" href="{% static 'images/app/icon.png' %}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
-    <title>Delete Account | Key Blogs</title>
+    <title>New Pen Name | Key Blogs</title>
 </head>
 
 <body>
     <div class="headtab"><h1>Key Blogs</h1></div><br/><br/>
     <div class="port">
     <div class="portal">
-        <center><h2>Delete Account</h2></center><br/>
+        <center><h2>New Pen Name</h2></center><br/>
         <form method="POST">
             {% csrf_token %}
-            <label>Hey {{ user.name }}, confirm your account deletion by entering your password.</label><br/><br/>
-            <label for="password">Password : &nbsp; </label>
-            <input type="password"  name="password" id="password" placeholder="Enter your password"><br/><br/>
-            <li>Incorrect Password.</li>
+            <label>Hey {{ user.name }}, please choose a unique pen name.</label><br/><br/>
+            <label for="username">Pen Name : &nbsp; </label>
+            <input type="text"  name="username" id="username" placeholder="Enter your password"><br/><br/>
+            <li>Pen Name already taken.</li>
             <br/>
-            <center><input type="submit" value="Confirm Delete"></center><br/>
+            <center><input type="submit" value="Continue"></center><br/>
         </form>
     </div>
     </div>
