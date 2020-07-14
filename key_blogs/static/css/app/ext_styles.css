@@ -94,9 +94,21 @@ body {
 .portal label {
     font-size: 1.8vh;
 }
+.portal a {
+    font-size: 1.8vh;
+    color: dodgerblue;
+    text-decoration: none;
+    line-height: 3vh;
+}
+.portal a:hover {
+    color: indigo;
+}
 .portal li {
     color: rgb(219, 0, 0);
     font-size: 1.8vh;
+}
+.portal ul {
+    color: dodgerblue;
 }
 .edit-acc button{
     background-color: white;

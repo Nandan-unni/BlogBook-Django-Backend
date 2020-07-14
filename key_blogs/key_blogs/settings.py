@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_email_verification',
     'app'
 ]
 
@@ -96,3 +97,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_URL = '/login/'
+
+
+EMAIL_ACTIVE_FIELD = 'is_active'
+EMAIL_SERVER = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_ADDRESS = 'argon.intelligence@gmail.com'
+EMAIL_PASSWORD = '1806@two000' # os.environ['password_key'] suggested
+EMAIL_MAIL_SUBJECT = 'Confirm your email'
+EMAIL_MAIL_HTML = 'registration/confirm_mail.html'
+EMAIL_PAGE_TEMPLATE = 'registration/confirm_account.html'

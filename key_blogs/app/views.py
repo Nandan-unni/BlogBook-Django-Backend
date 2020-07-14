@@ -1,29 +1,34 @@
 from django.contrib.auth import login as signin, authenticate, logout as signout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from colorama import Fore, Style
 
 from .forms import CreateAccountForm
 
+def message(msg):
+    print(Fore.RED, Style.BRIGHT, '\b\b', msg, Style.RESET_ALL)
 
 def index(request):
     return render(request, 'app/index.html')
 
 def logout(request):
+    message(request.user.name + ' logged out.')
     signout(request)
     return redirect('/')
 
 def login(request):
     err = {}
+    #msg = 'Check your mail box and verify your mail id to continue'
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
         user = authenticate(email=email, password=password)
-        print(user)
         if user is not None:
             signin(request, user)
-            print('Login success')
+            message(user.name + ' logged in.')
             return redirect('/blogs/view')
         err['err'] = 'Incorrect email or password'
+        message('User not found.')
         if not email and not password:
             err['err'] = 'Provide a email and password to login'
         elif not email:
@@ -40,13 +45,14 @@ def create_account(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.name = user.name.capitalize()
+            user.is_active = False
             user.save()
-            print('\nNew User created: ', user.name, '\n')
-            return redirect('/blogs/view/')
-        print('Error in creating account')
+            message('New User created: ' + user.name)
+            return redirect('/login/')
+        message('Error in creating account')
         for field in form:
             for error in field.errors:
-                print(field.label, ': ', error)
+                message(field.label + ': ' + error)
     else:
         form = CreateAccountForm()
     return render(request, 'registration/create_account.html', {'form':form})

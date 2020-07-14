@@ -16,7 +16,7 @@ class WriterManager(BaseUserManager):
         user.save(using=self._db)
         print('Yeah! We got through this.')
         return user
-    
+
     def create_superuser(self, name, email, password=None):
         user = self.create_user(name=name, email=email, password=password)
         user.is_staff = True
@@ -52,7 +52,7 @@ class Writer(AbstractUser):
 
     def __str__(self):
         return self.email
-    
+
     def no_of_followers(self):
         if self.followers.count():
             return self.followers.count()
@@ -62,5 +62,30 @@ class Writer(AbstractUser):
     def no_of_following(self):
         if self.following.count():
             return self.following.count()
+        else:
+            return 0
+
+
+class Blog(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=25)
+    content = models.TextField()
+    pub_date = models.DateField(auto_now_add=True)
+    mod_date = models.DateField(auto_now=True)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL,
+                                   related_name="likers",
+                                   blank=True,
+                                   symmetrical=False)
+
+    class Meta:
+        verbose_name = 'Blog'
+        verbose_name_plural = 'Blogs'
+
+    def __str__(self):
+        return self.title
+
+    def no_of_likes(self):
+        if self.likes.count():
+            return self.likes.count()
         else:
             return 0

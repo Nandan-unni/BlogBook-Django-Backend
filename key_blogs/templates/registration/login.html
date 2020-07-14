@@ -21,21 +21,17 @@
             <input type="email" name="email" id="email" placeholder="Enter your email id"><br/><br/>
             <label for="password">Password : </label><br/>
             <input type="password"  name="password" id="password" placeholder="Enter your password"><br/><br/>
-            {% for field in form %}
-                {% for error in field.errors %}
-                    {% if 'This field is required.' == error %}
-                        <li>{{ field.label }} : {{ error }}</li>
-                    {% else %}
-                        <li>{{ error }}</li>
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
+            {% if msg %}
+                <ul>{{ msg }}</ul>
+            {% endif %}
             {% if err %}
                 <li>{{ err }}</li>
             {% endif %}
             <br/>
-            <center><input type="submit" value="Login"></center><br/>
+            <center><input type="submit" value="Login"></center><br/><br/>
         </form>
+        <a href="/accounts/create/">Don't have an account ?</a><br/>
+        <a href="/accounts/view/">Forgot password</a><br/>
     </div>
     </div>
 </body>
