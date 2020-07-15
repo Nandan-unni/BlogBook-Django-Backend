@@ -2,9 +2,11 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from colorama import Fore, Style
 
 
 def main():
+    print(Fore.MAGENTA, Style.BRIGHT, '\n\b\b[#]', Fore.RED, 'Starting Sever', Style.RESET_ALL)
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'key_blogs.settings')
     try:
         from django.core.management import execute_from_command_line
@@ -15,6 +17,7 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
+    print(Fore.MAGENTA, Style.BRIGHT, '\b\b[#]', Fore.RED, 'Stopping Sever', Style.RESET_ALL)
 
 
 if __name__ == '__main__':

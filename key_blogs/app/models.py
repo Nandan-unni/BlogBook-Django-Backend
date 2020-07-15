@@ -27,7 +27,7 @@ class WriterManager(BaseUserManager):
 class Writer(AbstractUser):
     name = models.CharField('Name', max_length=100)
     email = models.EmailField('Email', max_length=100, unique=True)
-    username = models.CharField('Pen Name', max_length=25, unique=True)
+    username = models.CharField('Pen Name', max_length=100, unique=True)
     bio = models.TextField('Bio', blank=True)
     dp = models.ImageField('Profile Picture', upload_to='app/', default='app/writer.png')
     followers = models.ManyToManyField(settings.AUTH_USER_MODEL,

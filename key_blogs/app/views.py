@@ -1,12 +1,21 @@
-from django.contrib.auth import login as signin, authenticate, logout as signout
+from django.contrib.auth import (get_user_model,
+                                 authenticate,
+                                 login as signin,
+                                 logout as signout)
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage, EmailMultiAlternatives, send_mail
 from colorama import Fore, Style
 
-from .forms import CreateAccountForm
+from .forms import CreateAccountForm, CreatePenNameForm
+from .token import email_auth_token
 
 def message(msg):
-    print(Fore.RED, Style.BRIGHT, '\b\b', msg, Style.RESET_ALL)
+    print(Fore.MAGENTA, Style.BRIGHT, '\b\b[#]', Fore.RED, msg, Style.RESET_ALL)
 
 def index(request):
     return render(request, 'app/index.html')
@@ -45,9 +54,23 @@ def create_account(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.name = user.name.capitalize()
+            user.username = user.email
             user.is_active = False
             user.save()
             message('New User created: ' + user.name)
+            ##### Sending Email verification mail #####
+            site = get_current_site(request)
+            uid = urlsafe_base64_encode(force_bytes(user.id))
+            token = email_auth_token.make_token(user)
+            link = 'http://{}/accounts/{}/{}'.format(site.domain, uid, token)
+            email_subject = 'Confirm your account'
+            mail = render_to_string('registration/confirm_mail.html', {'link':link, 'user':user})
+            to_email = user.email
+            email = EmailMessage(email_subject, mail, from_email='Key Blogs', to=[to_email])
+            email.content_subtype = 'html'
+            email.send()
+            message('Email send to ' + user.name)
+            ##########################################
             return redirect('/login/')
         message('Error in creating account')
         for field in form:
@@ -56,6 +79,18 @@ def create_account(request):
     else:
         form = CreateAccountForm()
     return render(request, 'registration/create_account.html', {'form':form})
+
+
+def create_username(request):
+    err = {}
+    if request.method == 'POST':
+        form = CreatePenNameForm(request.POST)
+        if form.is_valid():
+            user = get_user_model().objects.get(pk=request.user.id)
+            user.username = form.cleaned_data['username']
+            user.save()
+        return redirect('/blogs/view/')
+    return render(request, 'registration/create_username.html', err)
 
 
 @login_required
