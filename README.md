@@ -7,5 +7,15 @@
 **Database** : *PostgreSQL* <br/>
 **Install the requirements** : 
 ```cmd
-pip install -r requirements.txt
+$ pip install -r requirements.txt
+```
+<br/>
+
+**Create Database** (Ubuntu):
+```cmd
+$ sudo su posgres
+$ psql
+# create database key_blogs;
+# \q
+$ exit
 ```

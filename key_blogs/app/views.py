@@ -37,6 +37,7 @@ def login(request):
             message(user.name + ' logged in.')
             return redirect('/blogs/view')
         err['err'] = 'Incorrect email or password'
+        err['msg'] = 'Make sure your email id is verified (check your mailbox) and try again.'
         message('User not found.')
         if not email and not password:
             err['err'] = 'Provide a email and password to login'
@@ -57,7 +58,7 @@ def create_account(request):
             user.username = user.email
             user.is_active = False
             user.save()
-            message('New User created: ' + user.name)
+            message(user.name + ' created an account.')
             ##### Sending Email verification mail #####
             site = get_current_site(request)
             uid = urlsafe_base64_encode(force_bytes(user.id))
@@ -79,6 +80,21 @@ def create_account(request):
     else:
         form = CreateAccountForm()
     return render(request, 'registration/create_account.html', {'form':form})
+
+
+def activate_account(request, uidb64, token):
+    try:
+        uid = force_bytes(urlsafe_base64_decode(uidb64))
+        user = get_user_model().objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
+        user = None
+    if user is not None and email_auth_token.check_token(user, token):
+        user.is_active = True
+        message(user.name + ' activated their account.')
+        user.save()
+        return render(request, 'registration/confirm_success.html')
+    message('Invalid email verification link recieved.')
+    return render(request, 'registration/confirm_failed.html')
 
 
 def create_username(request):

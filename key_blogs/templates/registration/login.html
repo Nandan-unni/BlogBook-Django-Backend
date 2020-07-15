@@ -21,11 +21,11 @@
             <input type="email" name="email" id="email" placeholder="Enter your email id"><br/><br/>
             <label for="password">Password : </label><br/>
             <input type="password"  name="password" id="password" placeholder="Enter your password"><br/><br/>
-            {% if msg %}
-                <ul>{{ msg }}</ul>
-            {% endif %}
             {% if err %}
                 <li>{{ err }}</li>
+            {% endif %}
+            {% if msg %}
+                <ul>{{ msg }}</ul>
             {% endif %}
             <br/>
             <center><input type="submit" value="Login"></center><br/><br/>
