@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/app/int_styles.css' %}">
+    <link rel="icon" href="{% static 'images/app/icon.png' %}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+    <title>Feeds | Key Blogs</title>
+</head>
+
+<body>
+    <div id="navbar" class="navbarpro">
+        <a href="/logout/"><b>Log Out</b></a>
+        <a href="/accounts/settings/"><b>Settings</b></a>
+        <a href="/blogs/view/"><b>Home</b></a>
+    </div>
+
+    <div class="profile">
+
+        <div class="blogs">
+            <div class="blog">
+            <h3>{{ blog.title }}</h3>
+                <a href="/accounts/visit/{{ blog.author.id }}">{{ blog.author.name }}</a>
+                <p>
+                    &nbsp; &nbsp; {{ blog.content }}<br/>
+                </p>
+                <div class="prof-butt">
+                    <a href="/blogs/edit/{{ blog.id }}" class="edit-acc"><button>Edit Blog</button></a>
+                    <a href="/blogs/delete/{{ blog.id }}" class="delete-acc"><button>Delete Blog</button></a>
+                </div>
+            </div>
+        </div>
+    
+    </div><br/>
+
+    <script src="{% static 'js/app/fixNavBar.js' %}"></script>
+</body>
+
+</html>

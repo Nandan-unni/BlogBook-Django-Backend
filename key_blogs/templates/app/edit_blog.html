@@ -22,9 +22,9 @@
         <form method="POST">
             {% csrf_token %}
             <label for="name">Title : </label><br/>
-            <input type="text" name='title' id="title" value="Django: The Python Web Framework"><br/><br/>
+            <input type="text" name='title' id="title" value="{{ blog.title }}"><br/><br/>
             <label for="email">Content : </label><br/>
-            <textarea id="content" name="content">Content of blog</textarea><br/><br/><br/>
+            <textarea id="content" name="content">{{ blog.content }}</textarea><br/><br/><br/>
             <center><input type="submit" value="Save Changes"></center>
         </form>
     </div>

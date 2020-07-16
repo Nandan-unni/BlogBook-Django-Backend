@@ -21,9 +21,22 @@
         <a href="/accounts/view/"><b>Profile</b></a>
         <a href="/blogs/create/"><b>New Blog</b></a>
         {% if user.is_superuser %}
-            <a href="/admin/"><b>Admin Portal</b></a>
+            <a href="/admin/app/writer/"><b>Writers</b></a>
         {% endif %}
     </div>
+
+    {% for blog in blogs %}
+        <div class="blogs">
+            <div class="blog">
+            <h3>{{ blog.title }}</h3>
+                <a href="/accounts/{{ blog.author.id }}">{{ blog.author.name }}</a>
+                <p>
+                    &nbsp; &nbsp; {{ blog.content }}<br/>
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+ 
     <div class="blogs">
         <div class="blog">
         <h3>Django : The Python web framework</h3>

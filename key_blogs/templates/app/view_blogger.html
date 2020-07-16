@@ -7,7 +7,7 @@
     <link rel="icon" href="{% static 'images/app/icon.png' %}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
-    <title>Feeds | Key Blogs</title>
+    <title>Blogger | Key Blogs</title>
 </head>
 
 <body>
@@ -24,23 +24,22 @@
         </div>
     
         <div class="prof-dtl">
-            <h2>{{ user.name }}</h2>
+            <h2>{{ blogger.name }}</h2>
             <img src="{% static 'images/app/bio.jpg' %}" align='left' hspace=10>
             <p>
-                {% if user.bio %}
-                    {{ user.bio }}
+                {% if blogger.bio %}
+                    {{ blogger.bio }}
                 {% else %}
                     No bio.
                 {% endif %}
             </p>
-            <img src="{% static 'images/app/pen-name.png' %}" align='left' hspace=10><i>python_writer</i><br/><br/>
-            <img src="{% static 'images/app/mail.png' %}" align='left' hspace=10><i>{{ user.email }}</i><br/><br/>
-            <img src="{% static 'images/app/blogs.png' %}" align='left' hspace=10><i>{{ user.blog_set.count }} Blogs</i><br/><br/>
+            <img src="{% static 'images/app/pen-name.png' %}" align='left' hspace=10><i>{{ blogger.username }}</i><br/><br/>
+            <img src="{% static 'images/app/blogs.png' %}" align='left' hspace=10><i>1 Blogs</i><br/><br/>
         </div>
     
         <div class="prof-butt">
-            <a href="/accounts/edit/" class="edit-acc"><button>Edit Account</button></a>
-            <a href="/accounts/delete/" class="delete-acc"><button>Delete Account</button></a>
+            <a href="#" class="edit-acc"><button>Follow</button></a>
+            <a href="#" class="edit-acc"><button>Unfollow</button></a>
         </div>
     
     </div>
@@ -49,9 +48,11 @@
 
     <div class="blog-list">
         <h2>Blogs</h2><hr><br/>
-        {% for blog in user.blog_set.all %}
-            <a href="/blogs/{{ blog.id }}">&starf; &nbsp; {{ blog.title }}</a><br/><br/><hr><br/>
-        {% endfor %}
+        <a href="#">&starf; &nbsp; Django: The Python Web Framework</a><br/><br/><hr><br/>
+        <a href="#">&starf; &nbsp; Django: The Python Web Framework</a><br/><br/><hr><br/>
+        <a href="#">&starf; &nbsp; Django: The Python Web Framework</a><br/><br/><hr><br/>
+        <a href="#">&starf; &nbsp; Django: The Python Web Framework</a><br/><br/><hr><br/>
+        <a href="#">&starf; &nbsp; Django: The Python Web Framework</a><br/><br/><hr><br/>
     </div>
     <script src="{% static 'js/app/fixNavBar.js' %}"></script>
 </body>

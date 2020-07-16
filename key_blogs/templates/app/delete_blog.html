@@ -17,7 +17,7 @@
         <center><h2>Delete Blog</h2></center><br/>
         <form method="POST">
             {% csrf_token %}
-            <label>Hey Lawrence, Are you sure you want to delete the blog 'Django: The Python web framework'.</label><br/><br/>
+            <label>Hey {{ user.name }}, Are you sure you want to delete the blog '{{ blog.title }}'.</label><br/><br/>
             <br/>
             <center><input type="submit" value="Confirm Delete"></center><br/>
         </form>

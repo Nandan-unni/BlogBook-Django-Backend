@@ -20,7 +20,9 @@
             <label>Hey {{ user.name }}, please choose a unique pen name.</label><br/><br/>
             <label for="username">Pen Name : &nbsp; </label>
             <input type="text"  name="username" id="username" placeholder="Enter your password"><br/><br/>
-            <li>Pen Name already taken.</li>
+            {% if err %}
+                <li>{{ err }}</li>
+            {% endif %}
             <br/>
             <center><input type="submit" value="Continue"></center><br/>
         </form>
