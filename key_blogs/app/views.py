@@ -8,19 +8,34 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.template.loader import render_to_string
+from django.template.response import TemplateResponse
 from django.core.mail import EmailMessage
+from django.http import HttpResponse
+from django.conf import settings
 from colorama import Fore, Style
 from datetime import date
 
-from .forms import CreateAccountForm, CreatePenNameForm, BlogCreationForm
+from .forms import (CreateAccountForm,
+                    CreatePenNameForm,
+                    EditAccountForm,
+                    EditDPForm,
+                    BlogCreationForm)
 from .token import email_auth_token
 from .models import Blog
+
+def handler404(request, *args, **argv):
+    response = TemplateResponse(request, 'app/404.html', {})
+    response.status_code = 404
+    return response
 
 def message(msg):
     print(Fore.MAGENTA, Style.BRIGHT, '\b\b[#]', Fore.RED, msg, Style.RESET_ALL)
 
 def index(request):
     #return render(request, 'registration/confirm_to_msg.html')
+    message(request.user)
+    if request.user.is_authenticated:
+        return redirect('/blogs/view/')
     return render(request, 'app/index.html')
 
 def logout(request):
@@ -38,7 +53,7 @@ def login(request):
         if user is not None:
             signin(request, user)
             message(user.name + ' logged in.')
-            return redirect('/blogs/view')
+            return redirect('/blogs/view/')
         err['err'] = 'Incorrect email or password. Make sure your email is verified (check your mailbox).'
         message('User not found.')
         if not email and not password:
@@ -65,7 +80,7 @@ def create_account(request):
             site = get_current_site(request)
             uid = urlsafe_base64_encode(force_bytes(user.id))
             token = email_auth_token.make_token(user)
-            link = 'http://{}/accounts/{}/{}'.format(site.domain, uid, token)
+            link = 'http://{}/accounts/activate/{}/{}'.format(site.domain, uid, token)
             email_subject = 'Confirm your account'
             mail = render_to_string('registration/confirm_mail.html', {'link':link, 'user':user})
             to_email = user.email
@@ -74,7 +89,7 @@ def create_account(request):
             email.send()
             message('Email send to ' + user.name)
             ##########################################
-            return redirect('/accounts/message/')
+            return render(request, 'registration/confirm_to_msg.html')
         message('Error in creating account')
         for field in form:
             for error in field.errors:
@@ -83,9 +98,6 @@ def create_account(request):
         form = CreateAccountForm()
     return render(request, 'registration/create_account.html', {'form':form})
 
-
-def post_create_account(request):
-    return render(request, 'registration/confirm_to_msg.html')
 
 
 def activate_account(request, uidb64, token):
@@ -123,17 +135,55 @@ def activate_account(request, uidb64, token):
 
 @login_required
 def view_account(request):
-    return render(request, 'registration/view_account.html')
+    return render(request, 'registration/view_account.html', {'media':settings.MEDIA_URL})
+
+
+@login_required
+def view_blogger(request, username):
+    blogger = get_user_model().objects.get(username=username)
+    if blogger.username == request.user.username:
+        return redirect('/accounts/view/')
+    return render(request, 'app/view_blogger.html', {'blogger':blogger})
 
 
 @login_required
 def edit_account(request):
-    return render(request, 'registration/edit_account.html')
+    if request.method == 'POST':
+        form = EditAccountForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            user.name = form.cleaned_data['name']
+            user.username = form.cleaned_data['pename']
+            user.bio = form.cleaned_data['bio']
+            user.save()
+            message(user.name + ' updated their account.')
+            return redirect('/accounts/view/')
+        message('Error in updating account')
+        for field in form:
+            for error in field.errors:
+                message(field.label + ': ' + error)
+    else:
+        form = EditAccountForm()
+    return render(request, 'registration/edit_account.html', {'form':form})
 
 
 @login_required
 def edit_dp(request):
-    return render(request, 'registration/edit_dp.html')
+    if request.method == 'POST':
+        form = EditDPForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = request.user
+            user.dp = form.cleaned_data['dp']
+            user.save()
+            message(user.name + ' updated their profile picture.')
+            return redirect('/accounts/view/')
+        message('Error in uploading DP')
+        for field in form:
+            for error in field.errors:
+                message(error)
+    else:
+        form = EditDPForm()
+    return render(request, 'registration/edit_dp.html', {'form':form})
 
 
 @login_required
@@ -147,11 +197,13 @@ def delete_account(request):
             try:
                 message(request.user.name + ' deleted their account.')
                 get_user_model().objects.get(pk=request.user.id).delete()
+                user = None
                 return redirect('/')
             except get_user_model().DoesNotExist:
                 message('User not found')
-                msg['err'] = 'User not found'
+                msg['err'] = 'User not found.'
         else:
+            message('Incorrect password for account deletion')
             msg['err'] = 'Incorrect Password'
     return render(request, 'registration/delete_account.html', msg)
 
@@ -169,8 +221,9 @@ def create_blog(request):
             blog.save()
             message(request.user.name + ' created a new blog : ' + blog.title)
             return redirect('/blogs/view/')
-        else:
-            print(form.errors)
+        for field in form:
+            for error in field.errors:
+                message(field.label + ': ' + error)
     else:
         form = BlogCreationForm()
     return render(request, 'app/create_blog.html', {'form':form})
@@ -178,7 +231,7 @@ def create_blog(request):
 
 @login_required
 def view_blogs(request):
-    blogs = Blog.objects.order_by('pub_date')
+    blogs = Blog.objects.order_by('-pub_date')
     return render(request, 'app/view_blogs.html', {'blogs':blogs})
 
 
@@ -189,9 +242,15 @@ def view_blog(request, pk):
 
 
 @login_required
-def view_blogger(request, pk):
-    blogger = get_user_model().objects.get(pk=pk)
-    return render(request, 'app/view_blogger.html', {'blogger':blogger})
+def like_blog(request, pk):
+    blog = Blog.objects.get(pk=pk)
+    if request.user in blog.likes.all():
+        blog.likes.remove(request.user)
+        message(request.user.name + " unliked the blog '{}'".format(blog.title))
+    else:
+        blog.likes.add(request.user)
+        message(request.user.name + " liked the blog '{}'".format(blog.title))
+    return redirect('/blogs/view/')
 
 
 @login_required
@@ -220,20 +279,16 @@ def delete_blog(request, pk):
 
 
 @login_required
-def follow(request, pk):
-    pass
-
-
-@login_required
-def unfollow(request, pk):
-    pass
-
-
-@login_required
-def view_following(request):
-    return render(request, 'app/following.html')
-
-
-@login_required
-def view_followers(request):
-    return render(request, 'app/followers.html')
+def follow(request, username):
+    blogger = get_user_model().objects.get(username=username)
+    user = request.user
+    if user in blogger.followers.all():
+        blogger.followers.remove(user)
+        user.following.remove(blogger)
+        message(user.name + ' unfollowed ' + blogger.name)
+    else:
+        blogger.followers.add(user)
+        user.following.add(blogger)
+        message(user.name + ' followed ' + blogger.name)
+    link = '/accounts/{}'.format(username)
+    return redirect(link)

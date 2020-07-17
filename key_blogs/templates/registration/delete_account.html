@@ -20,7 +20,9 @@
             <label>Hey {{ user.name }}, confirm your account deletion by entering your password.</label><br/><br/>
             <label for="password">Password : &nbsp; </label>
             <input type="password"  name="password" id="password" placeholder="Enter your password"><br/><br/>
-            <li>Incorrect Password.</li>
+            {% if err %}
+                <li>{{ err }}</li>
+            {% endif %}
             <br/>
             <center><input type="submit" value="Confirm Delete"></center><br/>
         </form>

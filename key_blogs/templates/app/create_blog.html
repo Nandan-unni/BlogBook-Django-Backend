@@ -25,6 +25,11 @@
             <input type="text" name='title' id="title" placeholder="Enter your name"><br/><br/>
             <label for="email">Content : </label><br/>
             <textarea id="content" placeholder="Type your blog here ..." name="content"></textarea><br/><br/><br/>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ field.label }} : {{ error }}</li>
+                {% endfor %}
+            {% endfor %}<br/>
             <center><input type="submit" value="Publish"></center>
         </form>
     </div>

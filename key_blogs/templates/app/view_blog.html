@@ -24,7 +24,7 @@
             <h3>{{ blog.title }}</h3>
                 <a href="/accounts/visit/{{ blog.author.id }}">{{ blog.author.name }}</a>
                 <p>
-                    &nbsp; &nbsp; {{ blog.content }}<br/>
+                    &nbsp; &nbsp; {{ blog.content|linebreaks }}<br/>
                 </p>
                 <div class="prof-butt">
                     <a href="/blogs/edit/{{ blog.id }}" class="edit-acc"><button>Edit Blog</button></a>

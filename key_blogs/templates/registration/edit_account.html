@@ -20,13 +20,18 @@
             <label for="name">Name : </label><br/>
             <input type="text" name='name' id="name" value="{{ user.name }}"><br/><br/>
             <label for="pname">Pen name : </label><br/>
-            <input type="text" name="pname" id="pname" value="{{ user.username }}"><br/><br/>
+            <input type="text" name="username" id="pname" value="{{ user.username }}"><br/><br/>
             <label for="bio">Bio : </label><br/>
-            <input type="text" name="bio" id="bio" 
-            value="{{ user.bio }}"><br/><br/><br/>
+            <input type="text" name="bio" id="bio" value="{{ user.bio }}"><br/><br/><br/>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ field.label }} : {{ error }}</li>
+                {% endfor %}
+            {% endfor %}<br/>
             <center><input type="submit" value="Save Changes"></center><br/>
         </form>
-        <center><a href="/accounts/propic/" class="edit-acc"><button><b>Change Profile Pic</b></button></a></center>
+        <center><a href="/accounts/editdp/" class="edit-acc"><button><b>Change Profile Pic</b></button></a></center>
+        <a href="/accounts/view/">Cancel</a>
     </div>
     </div>
 </body>

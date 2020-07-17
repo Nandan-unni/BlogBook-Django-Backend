@@ -13,6 +13,16 @@ class CreatePenNameForm(forms.ModelForm):
         model = get_user_model()
         fields = ['username']
 
+class EditDPForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['dp']
+
+class EditAccountForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['name', 'username', 'bio']
+
 class BlogCreationForm(forms.ModelForm):
     class Meta:
         model = Blog

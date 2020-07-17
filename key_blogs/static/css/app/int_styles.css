@@ -242,3 +242,7 @@ body {
 .portal label {
     font-size: 1.8vh;
 }
+.portal li {
+    color: rgb(219, 0, 0);
+    font-size: 1.8vh;
+}

@@ -7,13 +7,13 @@
     <link rel="icon" href="{% static 'images/app/icon.png' %}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
-    <title>Blogger | Key Blogs</title>
+    <title>{{ blogger.name }} | Key Blogs</title>
 </head>
 
 <body>
     <div id="navbar" class="navbarpro">
         <a href="/logout/"><b>Log Out</b></a>
-        <a href="/accounts/settings/"><b>Settings</b></a>
+        <a href="/accounts/profile/"><b>Settings</b></a>
         <a href="/blogs/view/"><b>Home</b></a>
     </div>
 
@@ -34,12 +34,17 @@
                 {% endif %}
             </p>
             <img src="{% static 'images/app/pen-name.png' %}" align='left' hspace=10><i>{{ blogger.username }}</i><br/><br/>
-            <img src="{% static 'images/app/blogs.png' %}" align='left' hspace=10><i>1 Blogs</i><br/><br/>
+            <img src="{% static 'images/app/blogs.png' %}" align='left' hspace=10><i>{{ blogger.blog_set.count }} Blogs</i><br/><br/>
+            <img src="{% static 'images/app/bio.jpg' %}" align='left' hspace=10>{{ blogger.no_of_followers }} Followers<br/><br/>
+            <img src="{% static 'images/app/bio.jpg' %}" align='left' hspace=10>{{ blogger.no_of_following }} Following
         </div>
     
         <div class="prof-butt">
-            <a href="#" class="edit-acc"><button>Follow</button></a>
-            <a href="#" class="edit-acc"><button>Unfollow</button></a>
+            {% if user in blogger.followers.all %}
+                <a href="/accounts/{{ blogger.username }}/follow/" class="edit-acc"><button>Unfollow</button></a>
+            {% else %}
+                <a href="/accounts/{{ blogger.username }}/follow/" class="edit-acc"><button>Follow</button></a>
+            {% endif %}
         </div>
     
     </div>
@@ -48,11 +53,9 @@
 
     <div class="blog-list">
         <h2>Blogs</h2><hr><br/>
-        <a href="#">&starf; &nbsp; Django: The Python Web Framework</a><br/><br/><hr><br/>
-        <a href="#">&starf; &nbsp; Django: The Python Web Framework</a><br/><br/><hr><br/>
-        <a href="#">&starf; &nbsp; Django: The Python Web Framework</a><br/><br/><hr><br/>
-        <a href="#">&starf; &nbsp; Django: The Python Web Framework</a><br/><br/><hr><br/>
-        <a href="#">&starf; &nbsp; Django: The Python Web Framework</a><br/><br/><hr><br/>
+        {% for blog in blogger.blog_set.all %}
+            <a href="/blogs/{{ blog.id }}">&starf; &nbsp; {{ blog.title }}</a><br/><br/><hr><br/>
+        {% endfor %}
     </div>
     <script src="{% static 'js/app/fixNavBar.js' %}"></script>
 </body>
