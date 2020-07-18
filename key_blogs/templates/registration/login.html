@@ -1,39 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'app/portal.html' %}
 
-<head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/app/ext_styles.css' %}">
-    <link rel="icon" href="{% static 'images/app/icon.png' %}">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
-    <title>Login | Key Blogs</title>
-</head>
-
-<body>
-    <div class="headtab"><h1>Key Blogs</h1></div><br/><br/>
-    <div class="port">
-    <div class="portal">
-        <center><h2>Login</h2></center><br/>
-        <form method="POST">
-            {% csrf_token %}
-            <label for="email">Email : </label><br/>
-            <input type="email" name="email" id="email" placeholder="Enter your email id"><br/><br/>
-            <label for="password">Password : </label><br/>
-            <input type="password"  name="password" id="password" placeholder="Enter your password"><br/><br/>
-            {% if err %}
-                <li>{{ err }}</li>
-            {% endif %}
-            {% if msg %}
-                <ul>{{ msg }}</ul>
-            {% endif %}
-            <br/>
-            <center><input type="submit" value="Login"></center><br/><br/>
-        </form>
-        <a href="/accounts/create/">Don't have an account ?</a><br/>
-        <a href="/accounts/view/">Forgot password</a><br/>
-    </div>
-    </div>
-</body>
-
-</html>
+{% block content %}
+    <center><h2>Login</h2></center><br/>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="email">Email : </label><br/>
+        <input type="email" name="email" id="email" placeholder="Enter your email id"><br/><br/>
+        <label for="password">Password : </label><br/>
+        <input type="password"  name="password" id="password" placeholder="Enter your password"><br/><br/>
+        {% if err %}
+            <li>{{ err }}</li>
+        {% endif %}
+        {% if msg %}
+            <ul>{{ msg }}</ul>
+        {% endif %}
+        <br/>
+        <center><input type="submit" value="Login"></center><br/><br/>
+    </form>
+    <a href="/accounts/create/">Don't have an account ?</a><br/>
+    <a href="/accounts/view/">Forgot password</a><br/>
+{% endblock %}

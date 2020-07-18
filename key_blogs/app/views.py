@@ -32,8 +32,6 @@ def message(msg):
     print(Fore.MAGENTA, Style.BRIGHT, '\b\b[#]', Fore.RED, msg, Style.RESET_ALL)
 
 def index(request):
-    #return render(request, 'registration/confirm_to_msg.html')
-    message(request.user)
     if request.user.is_authenticated:
         return redirect('/blogs/view/')
     return render(request, 'app/index.html')

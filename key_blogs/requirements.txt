@@ -1,8 +1,0 @@
-asgiref==3.2.10
-colorama==0.4.3
-Django==3.0.8
-django-email-verification==0.0.5.post1
-Pillow==7.2.0
-psycopg2==2.8.5
-pytz==2020.1
-sqlparse==0.3.1

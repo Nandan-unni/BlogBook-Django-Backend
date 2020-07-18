@@ -1,34 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'app/portal.html' %}
 
-<head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/app/ext_styles.css' %}">
-    <link rel="icon" href="{% static 'images/app/icon.png' %}">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
-    <title>Delete Account | Key Blogs</title>
-</head>
-
-<body>
-    <div class="headtab"><h1>Key Blogs</h1></div><br/><br/>
-    <div class="port">
-    <div class="portal">
-        <center><h2>Delete Account</h2></center><br/>
-        <form method="POST">
-            {% csrf_token %}
-            <label>Hey {{ user.name }}, confirm your account deletion by entering your password.</label><br/><br/>
-            <label for="password">Password : &nbsp; </label>
-            <input type="password"  name="password" id="password" placeholder="Enter your password"><br/><br/>
-            {% if err %}
-                <li>{{ err }}</li>
-            {% endif %}
-            <br/>
-            <center><input type="submit" value="Confirm Delete"></center><br/>
-        </form>
-        <a href="/accounts/view/">Cancel</a>
-    </div>
-    </div>
-</body>
-
-</html>
+{% block content %}
+    <center><h2>Delete Account</h2></center><br/>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Hey {{ user.name }}, confirm your account deletion by entering your password.</label><br/><br/>
+        <label for="password">Password : &nbsp; </label>
+        <input type="password"  name="password" id="password" placeholder="Enter your password"><br/><br/>
+        {% if err %}
+            <li>{{ err }}</li>
+        {% endif %}
+        <br/>
+        <center><input type="submit" value="Confirm Delete"></center><br/>
+    </form>
+    <a href="/accounts/view/">Cancel</a>
+{% endblock %}

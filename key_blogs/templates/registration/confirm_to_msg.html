@@ -1,28 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'app/portal.html' %}
 
-<head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/app/ext_styles.css' %}">
-    <link rel="icon" href="{% static 'images/app/icon.png' %}">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
-    <title>Email Verification | Key Blogs</title>
-</head>
-
-<body>
-    <div class="headtab"><h1>Key Blogs</h1></div><br/><br/>
-    <div class="port">
-    <div class="portal">
-        <center><h2>Verify your Email Address</h2></center><br/>
-        <label>You have successfully created an account in Key Blogs.
-               Please verify your email address from your mailbox to continue.</label><br/><br/><br/>
-        <center>
-            <a href="https://mail.google.com/"><input type="submit" value="Take me to Gmail"></a> &nbsp; &nbsp;
-            <a href="/login/"><input type="submit" value="Login"></a> &nbsp; &nbsp;
-        </center>
-    </div>
-    </div>
-</body>
-
-</html>
+{% block content %}
+<center><h2>Verify your Email Address</h2></center><br/>
+<label>You have successfully created an account in Key Blogs.
+       Please verify your email address from your mailbox to continue.</label><br/><br/><br/>
+<center>
+    <a href="https://mail.google.com/"><input type="submit" value="Take me to Gmail"></a> &nbsp; &nbsp;
+    <a href="/login/"><input type="submit" value="Login"></a> &nbsp; &nbsp;
+</center>
+{% endblock %}

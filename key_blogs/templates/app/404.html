@@ -1,25 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'app/portal.html' %}
 
-<head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/app/ext_styles.css' %}">
-    <link rel="icon" href="{% static 'images/app/icon.png' %}">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
-    <title>Delete Blog | Key Blogs</title>
-</head>
-
-<body>
-    <div class="headtab"><h1>Key Blogs</h1></div><br/><br/>
-    <div class="port">
-    <div class="portal">
-        <center><h2>Page Not Found</h2></center><br/>
-            <label>Sorry, you are looking for an invalid url.</label><br/><br/>
-            <br/>
-            <center><a href="/">Home</a></center><br/>
-    </div>
-    </div>
-</body>
-
-</html>
+{% block content %}
+    <center><h2>Page Not Found</h2></center><br/>
+    <label>Sorry, you are looking for an invalid url.</label><br/><br/>
+    <br/>
+    <center><a href="/">Home</a></center><br/>
+{% endblock %}
