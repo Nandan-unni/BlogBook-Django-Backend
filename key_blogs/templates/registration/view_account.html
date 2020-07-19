@@ -7,52 +7,113 @@
     <link rel="icon" href="{% static 'images/app/icon.png' %}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
-    <title>{{ user.name }} | Key Blogs</title>
+    <title>{{ blogger.name }} | Key Blogs</title>
 </head>
 
 <body>
     <div id="navbar" class="navbarpro">
-        <a href="/logout/"><b>Log Out</b></a>
-        <a href="/accounts/view/"><b>Settings</b></a>
-        <a href="/blogs/view/"><b>Home</b></a>
+        <a href="{% url 'logout' %}"><b>Log Out</b></a>
+        <a href="{% url 'view_account' user.username 'blogs' %}"><b>Settings</b></a>
+        <a href="{% url 'view_blogs' %}"><b>Home</b></a>
     </div>
 
-    <div class="profile">
-    
-        <div class="prof-pic">
-            <img src="/media/{{ user.dp }}" align='left' hspace=100>
+    <div class="account"><br/>
+        <div class="acc-dp">
+            <center><img src="/media/{{ blogger.dp }}"></center>
         </div>
-    
-        <div class="prof-dtl">
-            <h2>{{ user.name }}</h2>
-            <img src="{% static 'images/app/bio.jpg' %}" align='left' hspace=10>
-            <p>
-                {% if user.bio %}
-                    {{ user.bio }}
+        <div class="acc-dtl">
+            <center><h2>{{ blogger.name }}</h2></center>
+            <center><y>{{ blogger.username }} &nbsp; <b>|</b> &nbsp; {{ blogger.email }}</y></center><br/>
+            <center><z>{{ blogger.bio }}</z></center><br/>
+            <div class="acc-ctrl">
+                {% if blogger == user %}
+                    <a href="{% url 'edit_account' %}" class="ctrl-edit"><button>Edit Account</button></a>
+                    <a href="{% url 'delete_account' %}" class="ctrl-delete"><button>Delete Account</button></a>
                 {% else %}
-                    No bio.
+                    {% if user in blogger.followers.all %}
+                        <a href="{% url 'follow_account' blogger.username %}" class="ctrl-edit"><button>Unfollow</button></a>
+                    {% else %}
+                        <a href="{% url 'follow_account' blogger.username %}" class="ctrl-edit"><button>Follow</button></a>
+                    {% endif %}
                 {% endif %}
-            </p>
-            <img src="{% static 'images/app/pen-name.png' %}" align='left' hspace=10><i>{{ user.username }}</i><br/><br/>
-            <img src="{% static 'images/app/mail.png' %}" align='left' hspace=10><i>{{ user.email }}</i><br/><br/>
-            <img src="{% static 'images/app/blogs.png' %}" align='left' hspace=10><i>{{ user.blog_set.count }} Blogs</i><br/><br/>
+            </div><br/>
         </div>
-    
-        <div class="prof-butt">
-            <a href="/accounts/edit/" class="edit-acc"><button>Edit Account</button></a>
-            <a href="/accounts/delete/" class="delete-acc"><button>Delete Account</button></a>
-        </div>
-    
-    </div>
-    <br/><hr>
-    <div class="hr"></div>
 
-    <div class="blog-list">
-        <h2>Blogs</h2><hr><br/>
-        {% for blog in user.blog_set.all %}
-            <a href="/blogs/{{ blog.id }}">&starf; &nbsp; {{ blog.title }} </a> &nbsp; 💙<br/><br/><hr><br/>
-        {% endfor %}
+
+        {% if panel == 'blogs' %}
+            <div class="acc-panel">
+                <a href="{% url 'view_account' blogger.username 'blogs' %}" style="border-bottom: 0.3vh solid indigo; border-top: 0.5vh solid indigo;"><b>Blogs</b></a>
+                <a href="{% url 'view_account' blogger.username 'followers' %}">Followers</a>
+                <a href="{% url 'view_account' blogger.username 'following' %}">Following</a>
+            </div>
+            <hr>
+            {% if blogger.blog_set.all %}
+                {% for blog in blogger.blog_set.all %}
+                <div class="acc-panel-list">
+                    <a href="/blogs/{{ blog.id }}">{{ blog.title }}</a>
+                    {% if user in blog.likes.all %}
+                        <a>💙</a>
+                        &nbsp; &nbsp; <z style="color: dodgerblue;">{{ blog.no_of_likes }}</z>
+                    {% else %}
+                        <a>💜</a>
+                        &nbsp; &nbsp; <z style="color: black;">{{ blog.no_of_likes }}</z>
+                    {% endif %}<hr class="acc-vara">
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+
+
+        {% if panel == 'followers' %}
+            <div class="acc-panel">
+                <a href="{% url 'view_account' blogger.username 'blogs' %}">Blogs</a>
+                <a href="{% url 'view_account' blogger.username 'followers' %}" style="border-bottom: 0.3vh solid dodgerblue;"><b>Followers</b></a>
+                <a href="{% url 'view_account' blogger.username 'following' %}">Following</a>
+            </div>
+            <hr>
+            {% if blogger.followers.all %}
+                {% for follower in blogger.followers.all %}
+                <div class="acc-panel-list">
+                    <a href="{% url 'view_account' follower.username 'blogs' %}"><img src="/media/{{ follower.dp }}" align='left'>{{ follower.username }}</a>
+                    {% if not follower == user %}
+                        {% if follower in blogger.following.all %}
+                            <a href="{% url 'follow_account' blogger.username %}"><button>Unfollow</button></a>
+                        {% else %}
+                            <a href="{% url 'follow_account' blogger.username %}"><button>Follow</button></a>
+                        {% endif %}
+                    {% endif %}<hr class="acc-vara">
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+
+
+        {% if panel == 'following' %}
+            <div class="acc-panel">
+                <a href="{% url 'view_account' blogger.username 'blogs' %}">Blogs</a>
+                <a href="{% url 'view_account' blogger.username 'followers' %}">Followers</a>
+                <a href="{% url 'view_account' blogger.username 'following' %}" style="border-bottom: 0.3vh solid dodgerblue;"><b>Following</b></a>
+            </div>
+            <hr>
+            {% if blogger.following.all %}
+                {% for following in blogger.following.all %}
+                <div class="acc-panel-list">
+                    <a href="{% url 'view_account' following.username 'blogs' %}"><img src="/media/{{ following.dp }}" align='left'>{{ following.username }}</a>
+                    {% if not following == user %}
+                        {% if following in blogger.following.all %}
+                            <a href="{% url 'follow_account' following.username %}"><button>Unfollow</button></a>
+                        {% else %}
+                            <a href="{% url 'follow_account' following.username %}"><button>Follow</button></a>
+                        {% endif %}
+                    {% endif %}<hr class="acc-vara">
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+
+
     </div>
+
     <script src="{% static 'js/app/fixNavBar.js' %}"></script>
 </body>
 

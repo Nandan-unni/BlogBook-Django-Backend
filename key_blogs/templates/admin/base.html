@@ -51,7 +51,7 @@
                 {% if user.has_usable_password %}
                 <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a>  &nbsp; <b>|</b>
                 {% endif %}  &nbsp;
-                <a href="{% url 'view_account' %}">{% trans 'Profile' %}</a>  &nbsp; <b>|</b>  &nbsp;
+                <a href="{% url 'view_account' user.username 'blogs' %}">{% trans 'Profile' %}</a>  &nbsp; <b>|</b>  &nbsp;
                 <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
             {% endblock %}  &nbsp;
         </div>

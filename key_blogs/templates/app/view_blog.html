@@ -12,9 +12,9 @@
 
 <body>
     <div id="navbar" class="navbarpro">
-        <a href="/logout/"><b>Log Out</b></a>
-        <a href="/accounts/settings/"><b>Settings</b></a>
-        <a href="/blogs/view/"><b>Home</b></a>
+        <a href="{% url 'logout' %}"><b>Log Out</b></a>
+        <a href="{% url 'view_account' user.username 'blogs' %}"><b>Profile</b></a>
+        <a href="{% url 'view_blogs' %}"><b>Home</b></a>
     </div>
 
     <div class="profile">
@@ -22,13 +22,23 @@
         <div class="blogs">
             <div class="blog">
             <h3>{{ blog.title }}</h3>
-                <a href="/accounts/visit/{{ blog.author.id }}">{{ blog.author.name }}</a>
+                <a href="{% url 'view_account' blog.author.username 'blogs' %}">{{ blog.author.name }}</a>
                 <p>
                     &nbsp; &nbsp; {{ blog.content|linebreaks }}<br/>
                 </p>
-                <div class="prof-butt">
-                    <a href="/blogs/edit/{{ blog.id }}" class="edit-acc"><button>Edit Blog</button></a>
-                    <a href="/blogs/delete/{{ blog.id }}" class="delete-acc"><button>Delete Blog</button></a>
+                <div class="acc-ctrl">
+                    {% if blog.author == user %}
+                        <a href="{% url 'edit_blog' blog.id %}" class="ctrl-edit"><button>Edit Blog</button></a>
+                        <a href="{% url 'delete_blog' blog.id %}" class="ctrl-delete"><button>Delete Blog</button></a>
+                    {% else %}
+                        {% if user in blog.likes.all %}
+                        <a href="{% url 'like_blog' blog.id %}">💙</a>
+                            &nbsp; &nbsp; <z style="color: dodgerblue;">{{ blog.no_of_likes }}</z>
+                        {% else %}
+                            <a href="{% url 'like_blog' blog.id %}">💜</a>
+                            &nbsp; &nbsp; <z style="color: black;">{{ blog.no_of_likes }}</z>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>

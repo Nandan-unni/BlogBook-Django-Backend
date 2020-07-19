@@ -16,4 +16,5 @@
         {% endfor %}
         <center><input type="submit" value="Upload"></center><br/>
     </form>
+    <a href="{% url 'view_account' user.username 'blogs' %}">Cancel</a>
 {% endblock %}

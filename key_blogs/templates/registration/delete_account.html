@@ -13,5 +13,5 @@
         <br/>
         <center><input type="submit" value="Confirm Delete"></center><br/>
     </form>
-    <a href="/accounts/view/">Cancel</a>
+    <a href="{% url 'view_account' user.username 'blogs' %}">Cancel</a>
 {% endblock %}

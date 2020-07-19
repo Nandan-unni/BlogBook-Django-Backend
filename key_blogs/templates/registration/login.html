@@ -17,6 +17,6 @@
         <br/>
         <center><input type="submit" value="Login"></center><br/><br/>
     </form>
-    <a href="/accounts/create/">Don't have an account ?</a><br/>
-    <a href="/accounts/view/">Forgot password</a><br/>
+    <a href="{% url 'create_account' %}">Don't have an account ?</a><br/>
+    <a href="{% url 'login' %}">Forgot password</a><br/>
 {% endblock %}

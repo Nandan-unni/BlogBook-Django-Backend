@@ -132,17 +132,14 @@ def activate_account(request, uidb64, token):
 
 
 @login_required
-def view_account(request):
-    return render(request, 'registration/view_account.html', {'media':settings.MEDIA_URL})
-
-
-@login_required
-def view_blogger(request, username):
-    blogger = get_user_model().objects.get(username=username)
-    if blogger.username == request.user.username:
-        return redirect('/accounts/view/')
-    return render(request, 'app/view_blogger.html', {'blogger':blogger})
-
+def view_account(request, username, panel):
+    try:
+        blogger = get_user_model().objects.get(username=username)
+    except(TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
+        blogger = None
+    if blogger is not None:
+        return render(request, 'registration/view_account.html', {'blogger':blogger, 'panel':panel})
+    return redirect('/blogs/view/')
 
 @login_required
 def edit_account(request):
@@ -235,8 +232,13 @@ def view_blogs(request):
 
 @login_required
 def view_blog(request, pk):
-    blog = Blog.objects.get(pk=pk)
-    return render(request, 'app/view_blog.html', {'blog':blog})
+    try:
+        blog = Blog.objects.get(pk=pk)
+    except(TypeError, ValueError, OverflowError, Blog.DoesNotExist):
+        blog = None
+    if blog is not None:
+        return render(request, 'app/view_blog.html', {'blog':blog})
+    return redirect('/blogs/view/')
 
 
 @login_required
@@ -288,5 +290,5 @@ def follow(request, username):
         blogger.followers.add(user)
         user.following.add(blogger)
         message(user.name + ' followed ' + blogger.name)
-    link = '/accounts/{}'.format(username)
+    link = '/accounts/{}/blogs'.format(username)
     return redirect(link)

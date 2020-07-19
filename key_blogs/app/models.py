@@ -55,15 +55,15 @@ class Writer(AbstractUser):
 
     def no_of_followers(self):
         if self.followers.count():
-            return self.followers.count()
-        else:
-            return 0
+            if self.followers.count() == 1:
+                return str(self.followers.count()) + ' Follower'
+            return str(self.followers.count()) + ' Followers'
+        return '0 Followers'
 
     def no_of_following(self):
         if self.following.count():
-            return self.following.count()
-        else:
-            return 0
+            return str(self.following.count())
+        return 0
 
 
 class Blog(models.Model):
@@ -86,6 +86,7 @@ class Blog(models.Model):
 
     def no_of_likes(self):
         if self.likes.count():
-            return self.likes.count()
-        else:
-            return 0
+            if self.likes.count() == 1:
+                return str(self.likes.count()) + ' Like'
+            return str(self.likes.count()) + ' Likes'
+        return '0 Likes'

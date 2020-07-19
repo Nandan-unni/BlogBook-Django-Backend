@@ -17,6 +17,6 @@
         {% endfor %}<br/>
         <center><input type="submit" value="Save Changes"></center><br/>
     </form>
-    <center><a href="/accounts/editdp/" class="edit-acc"><button><b>Change Profile Pic</b></button></a></center>
-    <a href="/accounts/view/">Cancel</a>
+    <center><a href="{% url 'edit_dp' %}" class="edit-acc"><button><b>Change Profile Pic</b></button></a></center>
+    <a href="{% url 'view_account' user.username 'blogs' %}">Cancel</a>
 {% endblock %}

@@ -12,11 +12,10 @@ urlpatterns = [
 
     path('accounts/create/', views.create_account, name='create_account'),
     path('accounts/activate/<uidb64>/<token>/', views.activate_account, name='activate_account'),
-    path('accounts/<str:username>', views.view_blogger, name='view_blogger'),
-    path('accounts/<str:username>/follow/', views.follow, name='follow_blogger'),
-    path('accounts/view/', views.view_account, name='view_account'),
+    path('accounts/<username>/<panel>', views.view_account, name='view_account'),
     path('accounts/edit/', views.edit_account, name='edit_account'),
     path('accounts/editdp/', views.edit_dp, name='edit_dp'),
+    path('accounts/<username>/follow/', views.follow, name='follow_account'),
     path('accounts/delete/', views.delete_account, name='delete_account'),
 
     path('blogs/<pk>', views.view_blog),
