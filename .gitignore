@@ -1,2 +1,7 @@
 __pycache__/
 env/
+# Text backup files
+*.bak
+
+# Database
+*.sqlite3
