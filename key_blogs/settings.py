@@ -12,7 +12,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = '=g#q8kmb3sg-y1nu@z15ox5h!8mou3mgv5jyuc669fd%!^tk*p'
 DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.43.63', 'localhost']
+ALLOWED_HOSTS = ['192.168.43.63', 'localhost', '.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
