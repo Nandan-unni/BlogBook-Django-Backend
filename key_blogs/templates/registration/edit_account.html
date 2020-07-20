@@ -6,8 +6,6 @@
         {% csrf_token %}
         <label for="name">Name : </label><br/>
         <input type="text" name='name' id="name" value="{{ user.name }}"><br/><br/>
-        <label for="pname">Pen name : </label><br/>
-        <input type="text" name="username" id="pname" value="{{ user.username }}"><br/><br/>
         <label for="bio">Bio : </label><br/>
         <input type="text" name="bio" id="bio" value="{{ user.bio }}"><br/><br/><br/>
         {% for field in form %}

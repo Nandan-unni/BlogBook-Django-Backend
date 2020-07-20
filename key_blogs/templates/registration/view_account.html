@@ -23,7 +23,10 @@
         </div>
         <div class="acc-dtl">
             <center><h2>{{ blogger.name }}</h2></center>
-            <center><y>{{ blogger.username }} &nbsp; <b>|</b> &nbsp; {{ blogger.email }}</y></center><br/>
+            <center><y>{{ blogger.username }} &nbsp; 
+            {% if blogger == user %}
+                <b>|</b> &nbsp; {{ blogger.email }}</y></center><br/>
+            {% endif %}
             <center><z>{{ blogger.bio }}</z></center><br/>
             <div class="acc-ctrl">
                 {% if blogger == user %}
@@ -36,13 +39,16 @@
                         <a href="{% url 'follow_account' blogger.username %}" class="ctrl-edit"><button>Follow</button></a>
                     {% endif %}
                 {% endif %}
-            </div><br/>
+            </div><br/><br/><br/><br/>
         </div>
 
 
         {% if panel == 'blogs' %}
             <div class="acc-panel">
-                <a href="{% url 'view_account' blogger.username 'blogs' %}" style="border-bottom: 0.3vh solid indigo; border-top: 0.5vh solid indigo;"><b>Blogs</b></a>
+                <a href="{% url 'view_account' blogger.username 'blogs' %}" 
+                   style="border-bottom: 0.3vh solid indigo; border-top: 0.3vh solid indigo;">
+                   <b>Blogs</b>
+                </a>
                 <a href="{% url 'view_account' blogger.username 'followers' %}">Followers</a>
                 <a href="{% url 'view_account' blogger.username 'following' %}">Following</a>
             </div>
@@ -67,7 +73,10 @@
         {% if panel == 'followers' %}
             <div class="acc-panel">
                 <a href="{% url 'view_account' blogger.username 'blogs' %}">Blogs</a>
-                <a href="{% url 'view_account' blogger.username 'followers' %}" style="border-bottom: 0.3vh solid dodgerblue;"><b>Followers</b></a>
+                <a href="{% url 'view_account' blogger.username 'followers' %}" 
+                   style="border-bottom: 0.3vh solid indigo; border-top: 0.3vh solid indigo;">
+                   <b>Followers</b>
+                </a>
                 <a href="{% url 'view_account' blogger.username 'following' %}">Following</a>
             </div>
             <hr>
@@ -77,9 +86,9 @@
                     <a href="{% url 'view_account' follower.username 'blogs' %}"><img src="/media/{{ follower.dp }}" align='left'>{{ follower.username }}</a>
                     {% if not follower == user %}
                         {% if follower in blogger.following.all %}
-                            <a href="{% url 'follow_account' blogger.username %}"><button>Unfollow</button></a>
+                            <a href="{% url 'follow_account' follower.username %}"><button>Unfollow</button></a>
                         {% else %}
-                            <a href="{% url 'follow_account' blogger.username %}"><button>Follow</button></a>
+                            <a href="{% url 'follow_account' follower.username %}"><button>Follow</button></a>
                         {% endif %}
                     {% endif %}<hr class="acc-vara">
                 </div>
@@ -92,7 +101,10 @@
             <div class="acc-panel">
                 <a href="{% url 'view_account' blogger.username 'blogs' %}">Blogs</a>
                 <a href="{% url 'view_account' blogger.username 'followers' %}">Followers</a>
-                <a href="{% url 'view_account' blogger.username 'following' %}" style="border-bottom: 0.3vh solid dodgerblue;"><b>Following</b></a>
+                <a href="{% url 'view_account' blogger.username 'following' %}" 
+                   style="border-bottom: 0.3vh solid indigo; border-top: 0.3vh solid indigo;">
+                   <b>Following</b>
+                </a>
             </div>
             <hr>
             {% if blogger.following.all %}

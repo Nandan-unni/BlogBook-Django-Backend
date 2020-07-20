@@ -21,7 +21,7 @@ class EditDPForm(forms.ModelForm):
 class EditAccountForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
-        fields = ['name', 'username', 'bio']
+        fields = ['name', 'bio']
 
 class BlogCreationForm(forms.ModelForm):
     class Meta:

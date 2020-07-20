@@ -228,6 +228,7 @@ body {
     color: white;
 }
 .ctrl-edit button{
+    float: left;
     background-color: transparent;
     border: 3px solid rgb(0, 129, 209);
     color: rgb(0, 129, 209);
@@ -250,7 +251,7 @@ body {
     text-decoration: none;
     background-color: transparent;
     color: dodgerblue;
-    border-top: 0.5vh solid black;
+    border-top: 0.3vh solid black;
     border-bottom: 0.3vh solid black;
 }
 .acc-panel a:hover {
