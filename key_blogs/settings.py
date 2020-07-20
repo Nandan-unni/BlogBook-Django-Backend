@@ -100,4 +100,8 @@ EMAIL_HOST_PASSWORD = '1806@two000'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
