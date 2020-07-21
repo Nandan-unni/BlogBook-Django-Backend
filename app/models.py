@@ -10,7 +10,8 @@ class WriterManager(BaseUserManager):
             raise ValueError('Users must provide an email id')
         user = self.model(
             name=name.capitalize(),
-            email=self.normalize_email(email)
+            email=self.normalize_email(email),
+            username=self.normalize_email(email)
         )
         user.set_password(password)
         user.save(using=self._db)
