@@ -11,7 +11,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 #SECRET_KEY = '=g#q8kmb3sg-y1nu@z15ox5h!8mou3mgv5jyuc669fd%!^tk*p'
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
-DEBUG = False
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.43.63', 'localhost', '.herokuapp.com']
 
