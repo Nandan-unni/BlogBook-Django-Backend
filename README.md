@@ -1,6 +1,8 @@
 # Django-Blogging-App
 ### KEY BLOGS : *A Blogging app using Django Framework.*
 
+#### Website : https://keyblogs.herokuapp.com
+
 #### Features :
 **1.** Email verification <br/>
 **2.** Login with email <br/>
@@ -12,18 +14,15 @@
 
 **Backend** : *Django* <br/>
 **Frontend** : *Django Templates (HTML & CSS)* <br/>
-**Database** : *PostgreSQL* <br/>
+**Database** : *PostgreSQL (for production) and SQLite3 (for development)*<br/>
+
+**Create Virtual Environment** :
+```cmd
+$ python3 pip -m venv env_name
+$ source env_name/bin/activate
+```
+
 **Install the requirements** : 
 ```cmd
 $ pip install -r requirements.txt
-```
-<br/>
-
-**Create Database** (Ubuntu):
-```cmd
-$ sudo su posgres
-$ psql
-# create database key_blogs;
-# \q
-$ exit
 ```
