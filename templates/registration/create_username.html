@@ -6,7 +6,7 @@
         {% csrf_token %}
         <label>Hey {{ user.name }}, please choose a unique pen name.</label><br/><br/>
         <label for="username">Pen Name : &nbsp; </label>
-        <input type="text"  name="username" id="username" placeholder="Enter your password"><br/><br/>
+        <input type="text"  name="username" id="username" placeholder="Enter your pen name"><br/><br/>
         {% if err %}
             <li>{{ err }}</li>
         {% endif %}
