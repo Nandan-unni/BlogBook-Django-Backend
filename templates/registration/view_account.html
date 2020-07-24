@@ -30,7 +30,7 @@
             <center><z>{{ blogger.bio }}</z></center><br/>
             <div class="acc-ctrl">
                 {% if blogger == user %}
-                    <a href="{% url 'edit_account' %}" class="ctrl-edit"><button>Edit Account</button></a>
+                    <a href="{% url 'edit_account' blogger.username %}" class="ctrl-edit"><button>Edit Account</button></a>
                     <a href="{% url 'delete_account' %}" class="ctrl-delete"><button>Delete Account</button></a>
                 {% else %}
                     {% if user in blogger.followers.all %}

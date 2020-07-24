@@ -18,7 +18,7 @@
 
 **Create Virtual Environment** :
 ```cmd
-$ python3 pip -m venv env_name
+$ python3 -m venv env_name
 $ source env_name/bin/activate
 ```
 
