@@ -13,7 +13,7 @@ urlpatterns = [
     path('logout/', logout, name='logout'),
 
     path('accounts/create/',
-         create_account,
+         CreateAccountView.as_view(),
          name='create_account'),
 
     path('accounts/username/<pk>',

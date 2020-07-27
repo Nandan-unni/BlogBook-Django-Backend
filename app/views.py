@@ -47,7 +47,7 @@ def logout(request):
     return redirect('/')
 
 def login(request):
-    err = {'title':'Login'}
+    err = {}
     #msg = 'Check your mail box and verify your mail id to continue'
     if request.method == 'POST':
         email = request.POST['email']
@@ -60,7 +60,7 @@ def login(request):
                 link = '/accounts/username/{}'.format(user.pk)
                 return redirect(link)
             return redirect('/blogs/view/')
-        err['err'] = 'Incorrect email or password. Make sure your email is verified (check your mailbox).'
+        err['err'] = 'Incorrect email or password. Make sure your email is verified.'
         message('User not found.')
         if not email and not password:
             err['err'] = 'Provide a email and password to login'
@@ -71,9 +71,8 @@ def login(request):
     return render(request, 'registration/login.html', err)
 
 
-
-def create_account(request):
-    if request.method == 'POST':
+class CreateAccountView(generic.View):
+    def post(self, request):
         form = CreateAccountForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
@@ -95,14 +94,12 @@ def create_account(request):
             email.send()
             message('Email send to ' + user.name)
             ##########################################
-            return render(request, 'registration/confirm_to_msg.html', {'title':'Confirm your Account'})
+            return render(request, 'registration/confirm_to_msg.html')
         message('Error in creating account')
-        for field in form:
-            for error in field.errors:
-                message(field.label + ': ' + error)
-    else:
+        return render(request, 'registration/create_account.html', {'form':form})
+    def get(self, request):
         form = CreateAccountForm()
-    return render(request, 'registration/create_account.html', {'form':form})
+        return render(request, 'registration/create_account.html', {'form':form})
 
 
 def activate_account(request, uidb64, token):
@@ -119,7 +116,7 @@ def activate_account(request, uidb64, token):
         return redirect(link)
     else:
         message('Invalid email verification link recieved.')
-        return render(request, 'registration/confirm_failed.html', {'title':'Invalid Link'})
+        return render(request, 'registration/confirm_failed.html')
 
 
 class CreatePenNameView(generic.UpdateView):
