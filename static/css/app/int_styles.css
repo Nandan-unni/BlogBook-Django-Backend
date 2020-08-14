@@ -85,10 +85,10 @@ body {
 
 
 .blogs {
-    padding-top: 12vh;
+    padding-top: 6vh;
 }
 .blog {
-    background-color: rgb(182, 215, 226);
+    background-color: rgb(235, 235, 235);
     box-shadow: 0.5vh 0.5vh 0.5vh rgb(185, 185, 185);
     height: auto;
     margin-left: 5vw;
@@ -111,6 +111,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.8vh;
     margin-left: 3vw;
+    margin-top: -1px;
 }
 .blog-list h2 {
     margin-left: 5vh;
@@ -147,6 +148,7 @@ body {
     width: 35vh;
     outline: none;
     font-size: 1.8vh;
+    padding: 0.5vh 0.5vw;
 }
 .portal textarea {
     font-family: 'Open Sans', sans-serif;
@@ -158,6 +160,7 @@ body {
     resize: none;
     outline: none;
     font-size: 1.8vh;
+    padding: 0.5vh 0.5vw;
 }
 .portal input[type='submit'] {
     padding: 1vh 1vw;
@@ -251,13 +254,13 @@ body {
     text-decoration: none;
     background-color: transparent;
     color: dodgerblue;
-    border-top: 0.3vh solid black;
-    border-bottom: 0.3vh solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 .acc-panel a:hover {
     background-color: dodgerblue;
     color: white;
-    border-bottom: 0.3vh solid dodgerblue;
+    border-bottom: 1px solid black;
     font-weight: 900;
 }
 .acc-panel-list a {
@@ -296,4 +299,24 @@ body {
 .acc-vara {
     height: 0.1vh;
     background-color: rgb(196, 224, 241);
+}
+
+.footer a {
+    text-decoration: none;
+    width: 3vh;
+}
+.fa {
+    border-radius: 50%;
+}
+.fa-github {
+    color: #333;
+}
+.fa-linkedin {
+    color: #0e76a8;
+}
+.fa-twitter {
+    color:  #00acee;
+}
+.fa-instagram {
+    color: #dd2a7b;
 }

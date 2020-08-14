@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from datetime import datetime
 
 class WriterManager(BaseUserManager):
     def create_user(self, name, email, password=None):
@@ -15,7 +16,7 @@ class WriterManager(BaseUserManager):
         )
         user.set_password(password)
         user.save(using=self._db)
-        print('Yeah! We got through this.')
+        print('User Created.')
         return user
 
     def create_superuser(self, name, email, password=None):
@@ -72,6 +73,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=25)
     content = models.TextField()
     pub_date = models.DateField(auto_now_add=True)
+    pub_time = models.DateTimeField(auto_now_add=True)
     mod_date = models.DateField(auto_now=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                    related_name="likers",
