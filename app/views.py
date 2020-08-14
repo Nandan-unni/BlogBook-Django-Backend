@@ -193,7 +193,7 @@ class CreateBlogView(generic.CreateView):
 
 class BlogsView(generic.ListView):
     template_name = 'app/view_blogs.html'
-    queryset = Blog.objects.order_by('-pub_date')
+    queryset = Blog.objects.order_by('-pub_time')
     context_object_name = 'blogs'
 
 

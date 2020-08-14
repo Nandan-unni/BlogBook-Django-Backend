@@ -70,7 +70,7 @@ class Writer(AbstractUser):
 
 class Blog(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=25)
+    title = models.CharField(max_length=40)
     content = models.TextField()
     pub_date = models.DateField(auto_now_add=True)
     pub_time = models.DateTimeField(auto_now_add=True)
