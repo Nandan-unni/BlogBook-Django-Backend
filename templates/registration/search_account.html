@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/app/int_styles.css' %}">
+    <link rel="icon" href="{% static 'images/app/icon.png' %}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Search | Key Blogs</title>
+</head>
+
+<body>
+    <br/>
+    <div id="navbar" class="search-bar">
+        <center>
+            <form method="POST">
+                {% csrf_token %}
+            <a href="{% url 'view_blogs' %}" class="fa fa-2x fa-home"></a> &nbsp; &nbsp; 
+            <input name="username" type="text" placeholder="Search with pen name"> &nbsp; &nbsp;
+            <button type="submit"><a class="fa fa-2x fa-search"></a></button>
+            </form>
+        </center>
+    </div><br/><br/>
+    <div class="search-results">
+        {% if bloggers %}
+        {% for blogger in bloggers %}
+        <img src="/media/{{ blogger.dp }}" align="left">
+        <div class="search-ctrl">
+            <a href="{% url 'view_account' blogger.username 'followers' %}">{{ blogger.username }}</a> &nbsp; &nbsp; &nbsp; &nbsp;
+            {% if user in blogger.followers.all %}
+                <a href="{% url 'follow_account' blogger.username %}" class="search-follow"><button>Unfollow</button></a>
+            {% else %}
+                <a href="{% url 'follow_account' blogger.username %}" class="search-follow"><button>Follow</button></a>
+            {% endif %}<br/>
+            <ash>{{ blogger.name }}</ash>
+        </div>
+        <br/><hr/><br>
+        {% endfor %}
+        {% else %}
+        no search-results
+        {% endif %}
+    </div>
+
+    <script src="{% static 'js/app/fixNavBar.js' %}"></script>
+</body>
+
+</html>

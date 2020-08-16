@@ -25,6 +25,7 @@
             <a href="/admin/app/writer/"><b>Writers</b></a>
             <a href="/admin/app/blog/"><b>Blogs</b></a>
         {% endif %}
+        <a href="{% url 'search_account' %}" class="fa fa-search"></a>
     </div>
 
     {% for blog in blogs %}

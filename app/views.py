@@ -246,3 +246,12 @@ def follow(request, username):
         message(user.name + ' followed ' + blogger.name)
     link = '/accounts/{}/following'.format(username)
     return redirect(link)
+
+@login_required
+def search(request):
+    if request.method == 'POST':
+        writer = request.POST['username']
+        bloggers = get_user_model().objects.filter(username=writer)
+    else:
+        bloggers = get_user_model().objects.all()
+    return render(request, 'registration/search_account.html', {'bloggers': bloggers})

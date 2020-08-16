@@ -40,6 +40,10 @@ urlpatterns = [
          follow,
          name='follow_account'),
 
+    path('accounts/search/',
+         search,
+         name='search_account'),
+
     path('accounts/delete/',
          delete_account,
          name='delete_account'),
@@ -68,5 +72,4 @@ urlpatterns = [
     path('blogs/delete/<pk>',
          login_required(DeleteBlogView.as_view()),
          name='delete_blog'),
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
