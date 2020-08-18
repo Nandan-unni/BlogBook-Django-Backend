@@ -14,7 +14,7 @@ if UNNI:
     STATICFILES_DIRS = [STATIC_DIR,]
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 #SECRET_KEY = '=g#q8kmb3sg-y1nu@z15ox5h!8mou3mgv5jyuc669fd%!^tk*p'
