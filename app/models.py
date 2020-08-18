@@ -70,7 +70,7 @@ class Writer(AbstractUser):
 
 class Blog(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=40)
+    title = models.CharField(max_length=40, blank=False, null=False)
     content = models.TextField()
     pub_date = models.DateField(auto_now_add=True)
     pub_time = models.DateTimeField(auto_now_add=True)
@@ -93,3 +93,9 @@ class Blog(models.Model):
                 return str(self.likes.count()) + ' Like'
             return str(self.likes.count()) + ' Likes'
         return '0 Likes'
+
+class Message(models.Model):
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='Sender')
+    reciever = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='Reciever')
+    text = models.CharField('Message', max_length=60, blank=False, null=False)
+    send_time = models.DateTimeField(auto_now_add=True)

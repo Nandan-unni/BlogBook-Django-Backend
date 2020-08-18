@@ -51,8 +51,7 @@ body {
     font-size: 1.6vh;
 }
 .navbar a:hover{
-    background-color: lightskyblue;
-    color: indigo;
+    color: rgb(71, 163, 255);
 }
 .navbarpro {
     overflow: hidden;
@@ -74,8 +73,7 @@ body {
     font-size: 1.6vh;
 }
 .navbarpro a:hover{
-    background-color: lightskyblue;
-    color: indigo;
+    color: rgb(71, 163, 255);
 }
 .fix{
     position: fixed;
