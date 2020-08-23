@@ -7,14 +7,15 @@
     <link rel="icon" href="{% static 'images/app/icon.png' %}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>{{ blogger.name }} | Key Blogs</title>
 </head>
 
 <body>
     <div id="navbar" class="navbarpro">
-        <a href="{% url 'logout' %}"><b>Log Out</b></a>
-        <a href="{% url 'view_account' user.username 'blogs' %}"><b>Settings</b></a>
-        <a href="{% url 'view_blogs' %}"><b>Home</b></a>
+        <a href="{% url 'logout' %}"><span class="material-icons">logout</span></a>
+        <a href="{% url 'view_account' user.username 'blogs' %}"><span class="material-icons">settings</span></a>
+        <a href="{% url 'view_blogs' %}"><span class="material-icons">home</span></a>
     </div>
 
     <div class="account"><br/>

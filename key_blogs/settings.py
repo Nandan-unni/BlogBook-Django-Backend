@@ -1,6 +1,6 @@
 import os
 
-UNNI = False
+UNNI = True
 
 AUTH_USER_MODEL = 'app.Writer'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

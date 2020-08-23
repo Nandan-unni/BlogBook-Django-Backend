@@ -7,7 +7,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8)
     class Meta:
         model = get_user_model()
-        fields = ['name', 'email', 'password']
+        fields = ['name', 'email', 'username', 'password']
 
 class CreateBlogSerializer(serializers.ModelSerializer):
     class Meta:

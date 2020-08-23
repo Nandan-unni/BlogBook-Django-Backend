@@ -45,6 +45,7 @@ def index(request):
     if request.user.is_authenticated:
         return redirect('/blogs/view/')
     return render(request, 'app/index.html')
+    #return redirect('http://localhost:3000/')
 
 def logout(request):
     message(request.user.name + ' logged out.')
