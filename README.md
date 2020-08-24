@@ -1,28 +1,22 @@
-# Django-Blogging-App
-### KEY BLOGS : *A Blogging app using Django Framework.*
+# 💡 [Key Blogs](https://keyblogs.herokuapp.com) ✏️
 
-#### Website : https://keyblogs.herokuapp.com
+This is a website where you can write and publish Blogs. <br />
 
-#### Features :
-**1.** Email verification <br/>
-**2.** Login with email <br/>
-**3.** Create, Edit, View(Profile) and Delete Accounts <br/>
-**4.** Update Profile Picture <br/>
-**5.** Create, Edit, Like and Delete Blogs <br/>
-**6.** Follow and Unfollow Users <br/>
-<br/>
+## Features
 
-**Backend** : *Django* <br/>
-**Frontend** : *Django Templates (HTML & CSS)* <br/>
-**Database** : *PostgreSQL (for production) and SQLite3 (for development)*<br/>
+**1.** Email Login <br />
+**2.** Email Verification <br />
+**3.** API to Create, Edit, View and Delete Accounts <br />
+**4.** API to Create, Edit, View and Delete Blogs <br />
+**5.** Searching and Messaging users <br />
 
-**Create Virtual Environment** :
-```cmd
-$ python3 -m venv env_name
-$ source env_name/bin/activate
-```
+## Frontend
 
-**Install the requirements** : 
-```cmd
-$ pip install -r requirements.txt
-```
+**Reactjs** serves the frontend and antd is also used to design the UI. Axios is used to make API calls. The source code for backend can be found in the repo [KeyBlogs Django Frontend](https://github.com/nandan-unni/KeyBlogs-React-Frontend) <br />
+
+## Status
+
+**_>** The backend development is almost completed and is hosted on Heroku with a temporary frontend using Django Templates.<br />
+**_>** The frontend made with React is still under development. It's not yet hosted anywhere.<br />
+**_>** The temporary website is available at [KeyBlogs Website](https://keyblogs.herokuapp.com) <br />
+**_>** The API is available at [KeyBlogs API](https://keyblogs.herokuapp.com/api/) <br />
