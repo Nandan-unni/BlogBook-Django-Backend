@@ -12,17 +12,19 @@ class CreateUserSerializer(serializers.ModelSerializer):
 class CreateBlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'is_published']
 
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = ['pk', 'author', 'title', 'content', 'pub_time', 'likes', 'no_of_likes']
+        fields = ['pk', 'author', 'author_pname', 'title', 'content', 'likes', 'no_of_likes', 'is_published']
 
 class AccountSerializer(serializers.ModelSerializer):
+    blogs = BlogSerializer(many=True)
     class Meta:
         model = get_user_model()
-        fields = ['pk', 'name', 'email',
+        fields = ['pk', 'name', 'username', 'email',
                   'bio', 'dp',
                   'followers', 'no_of_followers',
-                  'following', 'no_of_following']
+                  'following', 'no_of_following',
+                  'blogs', 'no_of_blogs']

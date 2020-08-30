@@ -57,21 +57,26 @@ class Writer(AbstractUser):
 
     def no_of_followers(self):
         if self.followers.count():
-            if self.followers.count() == 1:
-                return str(self.followers.count()) + ' Follower'
-            return str(self.followers.count()) + ' Followers'
-        return '0 Followers'
+            return self.followers.count()
+        return 0
 
     def no_of_following(self):
         if self.following.count():
-            return str(self.following.count())
+            return self.following.count()
         return 0
+
+    def no_of_blogs(self):
+        return self.blog_set.count()
+    
+    def blogs(self):
+        return self.blog_set.all()
 
 
 class Blog(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=40, blank=False, null=False)
     content = models.TextField()
+    is_published = models.BooleanField(default=True)
     pub_date = models.DateField(auto_now_add=True)
     pub_time = models.DateTimeField(auto_now_add=True)
     mod_date = models.DateField(auto_now=True)
@@ -86,13 +91,16 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def author_pname(self):
+        return self.author.username
 
     def no_of_likes(self):
         if self.likes.count():
             if self.likes.count() == 1:
-                return str(self.likes.count()) + ' Like'
-            return str(self.likes.count()) + ' Likes'
-        return '0 Likes'
+                return self.likes.count()
+            return self.likes.count()
+        return 0
 
 class Message(models.Model):
     sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='Sender')
