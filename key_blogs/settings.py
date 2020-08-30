@@ -52,6 +52,7 @@ CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'https://keyblogs.web.app'
 )
 
 ROOT_URLCONF = 'key_blogs.urls'
