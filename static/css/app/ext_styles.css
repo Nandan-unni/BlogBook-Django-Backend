@@ -11,17 +11,17 @@ body {
 kb {
     font-family: 'Electrolize', sans-serif;
     font-weight: 900;
-    color: dodgerblue;
+    color: tomato;
     cursor: pointer;
 }
 kb:hover {
-    color: rgb(0, 128, 255);
+    color: rgb(220, 0, 0);
 }
 p {
     padding-top: 15vh;
 }
 .headtab {
-    background-color: indigo;
+    background-color: rgb(0, 30, 70);
     margin-left: -1vh;
     margin-top: -1vh;
     height: 10vh;
@@ -33,8 +33,8 @@ p {
     box-shadow: 0vh 1vh 1vh gray;
 }
 .headtab h1 {
-    color: rgb(14, 176, 240);
-    text-shadow: 0.5vh 0.5vh 0.5vh darkblue;
+    color: tomato;
+    text-shadow: 2px 2px rgb(77, 11, 0);
     font-family: 'Electrolize', sans-serif;
     font-size: 5vh;
     margin-left: 10vw;
@@ -71,9 +71,9 @@ p {
     padding-top: 15vh;
 }
 .portal {
-    border: 3px solid indigo;
+    border:0.3vh solid indigo;
     padding: 3vh 3vw;
-    border-radius: 10px;
+    border-radius: 1vh;
     margin: auto;
     box-shadow: 0.5vh 0.5vh 0.5vh gray;
     height: fit-content;
@@ -81,27 +81,27 @@ p {
 }
 .portal input[type='text'], input[type='email'], input[type='password'] {
     border: 1px solid indigo;
-    border-bottom: 3px solid indigo;
     border-radius: 5px;
-    height: 4vh;
+    height: 5vh;
     width: 35vh;
     font-size: 1.8vh;
     outline: none;
-    padding: 0.5vh 0.5vw;
+    padding: 1vh 0.5vw 1vh 0.5vw;
 }
 .portal input[type='submit'] {
     padding: 1vh 1vw;
     font-weight: 900;
     font-size: 1.8vh;
+    font-family: 'Open Sans', sans-serif;
     background-color: indigo;
     color: white;
     border: 3px solid indigo;
+    border-radius: 1vh;
 }
 .portal input[type='submit']:hover {
-    background-color: indigo;
-    border: 3px solid indigo;
-    color: rgb(14, 176, 240);
-    border-radius: 5px;
+    background-color: rgb(0, 30, 70);
+    border: 3px solid rgb(0, 30, 70);
+    color: rgb(130, 192, 255);
 }
 .portal h2 {
     font-size: 3vh;

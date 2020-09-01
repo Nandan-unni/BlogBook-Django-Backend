@@ -13,9 +13,9 @@
 
 <body>
     <div id="navbar" class="navbarpro">
-        <a href="{% url 'logout' %}"><span class="material-icons">logout</span></a>
-        <a href="{% url 'view_account' user.username 'blogs' %}"><span class="material-icons">settings</span></a>
-        <a href="{% url 'view_blogs' %}"><span class="material-icons">home</span></a>
+        <a href="{% url 'logout' %}"><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
+        <a href="{% url 'view_account' user.username 'blogs' %}"><i class="material-icons">settings</i><br/><z>Settings</z></a>
+        <a href="{% url 'view_blogs' %}"><i class="material-icons">home</i><br/><z>Feeds</z></a>
     </div>
 
     <div class="account"><br/>
@@ -59,12 +59,12 @@
                 <div class="acc-panel-list">
                     <a href="/blogs/{{ blog.id }}">{{ blog.title }}</a>
                     {% if user in blog.likes.all %}
-                        <a>💙</a>
-                        &nbsp; &nbsp; <z style="color: dodgerblue;">{{ blog.no_of_likes }}</z>
+                        <a href="{% url 'like_blog' blog.id %}"><i class="material-icons" style="color: dodgerblue; font-size: 2.5vh;">favorite</i></a>
+                        &nbsp; &nbsp;<z style="color: dodgerblue; font-size: 2vh;">{{ blog.no_of_likes }}</z>
                     {% else %}
-                        <a>💜</a>
-                        &nbsp; &nbsp; <z style="color: black;">{{ blog.no_of_likes }}</z>
-                    {% endif %}<hr class="acc-vara">
+                        <a href="{% url 'like_blog' blog.id %}"><i class="material-icons" style="color: darkmagenta; font-size: 2.5vh;">favorite</i></a>
+                        &nbsp; &nbsp;<z style="color: black; font-size: 2vh;">{{ blog.no_of_likes }}</z>
+                    {% endif %}
                 </div>
                 {% endfor %}
             {% endif %}

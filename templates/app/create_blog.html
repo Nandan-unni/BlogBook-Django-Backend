@@ -7,13 +7,14 @@
     <link rel="icon" href="{% static 'images/app/icon.png' %}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Create Blog | Key Blogs</title>
 </head>
 
 <body>
     <div id="navbar" class="navbarpro">
-        <a href="{% url 'logout' %}"><b>Log Out</b></a>
-        <a href="{% url 'view_blogs' %}"><b>Home</b></a>
+        <a href="{% url 'logout' %}"><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
+        <a href="{% url 'view_blogs' %}"><i class="material-icons">home</i><br/><z>Feeds</z></a>
     </div>
 
     <div class="port">

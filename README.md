@@ -23,7 +23,8 @@ This is a website where you can write and publish Blogs. <br />
 
 ## Status
 
+**_>** The frontend made with React is still under development and is hosted on Firebase.<br />
 **_>** The backend development is almost completed and is hosted on Heroku with a temporary frontend using Django Templates.<br />
-**_>** The frontend made with React is still under development. It's not yet hosted anywhere.<br />
+**_>** The frontend is available at [Keyblogs Frontend](https://keyblogs.web.app) <br />
 **_>** The temporary website is available at [KeyBlogs Website](https://keyblogs.herokuapp.com) <br />
 **_>** The API is available at [KeyBlogs API](https://keyblogs.herokuapp.com/api/) <br />

@@ -19,16 +19,13 @@
         </div>
     </div>
     <div id="navbar" class="navbar">
-        <a href="{% url 'logout' %}"><span class="material-icons">logout</span></a>
-        <a href="{% url 'view_account' user.username 'blogs' %}"><span class="material-icons">
-            account_circle
-            </span></a>
-        <a href="{% url 'search_account' %}"><span class="material-icons">person_add_alt_1</span></a>
-        <a href="{% url 'search_account' %}"><span class="material-icons">chat</span></a>
-        <a href="{% url 'create_blog' %}"><b>New Blog</b></a>
+        <a href="{% url 'logout' %}"><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
+        <a href="{% url 'view_account' user.username 'blogs' %}"><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
+        <a href="{% url 'search_account' %}"><i class="material-icons">person_add_alt_1</i><br/><z>Search</z></a>
+        <a href="{% url 'search_account' %}"><i class="material-icons">chat</i><br/><z>Message</z></a>
+        <a href="{% url 'create_blog' %}"><i class="material-icons">edit</i><br/><z>New Blog</z></a>
         {% if user.is_superuser %}
-            <a href="/admin/app/writer/"><b>Writers</b></a>
-            <a href="/admin/app/blog/"><b>Blogs</b></a>
+            <a href="/admin/"><i class="material-icons">construction</i><br/><z>API</z></a>
         {% endif %}
     </div>
 
@@ -41,11 +38,11 @@
                     &nbsp; &nbsp; {{ blog.content|linebreaks }}<br/>
                 </p>
                 {% if user in blog.likes.all %}
-                <a href="{% url 'like_blog' blog.id %}">💙</a>
-                    &nbsp; &nbsp; <z style="color: dodgerblue;">{{ blog.no_of_likes }}</z>
+                <a href="{% url 'like_blog' blog.id %}"><i class="material-icons" style="color: dodgerblue;">favorite</i></a>
+                    &nbsp; &nbsp; <z style="color: dodgerblue; font-size: 3vh;">{{ blog.no_of_likes }}</z>
                 {% else %}
-                    <a href="{% url 'like_blog' blog.id %}">💜</a>
-                    &nbsp; &nbsp; <z style="color: black;">{{ blog.no_of_likes }}</z>
+                    <a href="{% url 'like_blog' blog.id %}"><i class="material-icons" style="color: darkmagenta;">favorite</i></a>
+                    &nbsp; &nbsp;<z style="color: black; font-size: 3vh;">{{ blog.no_of_likes }}</z>
                 {% endif %}
             </div>
         </div>
