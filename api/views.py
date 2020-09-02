@@ -18,13 +18,15 @@ class LoginAccountAPI(views.APIView):
         if user is not None:
             login(request, user)
             message(user.name + ' logged in.')
-            return Response(status=status.HTTP_200_OK)
+            serializer = AccountSerializer(user)
+            return Response(status=status.HTTP_200_OK, data=serializer.data)
         message('User not found.')
         return Response(status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
 
 class LogoutAccountAPI(views.APIView):
-    def get(self, request, format=None):
-        message(request.user.name + ' logged out. ')
+    def get(self, request, **kwargs):
+        user = get_user_model().objects.get(pk=kwargs['pk'])
+        message(user.name + ' logged out. ')
         logout(request)
         return Response(status=status.HTTP_200_OK)
 
@@ -69,3 +71,15 @@ class ManageBlogAPI(generics.RetrieveUpdateDestroyAPIView):
 class FeedAPI(generics.ListAPIView):
     serializer_class = BlogSerializer
     queryset = Blog.objects.filter(is_published=True).order_by('-pub_time')
+
+class LikeBlogAPI(views.APIView):
+    def get(self, request, **kwargs):
+        blog = Blog.objects.get(pk=kwargs['blog_pk'])
+        user = get_user_model().objects.get(pk=kwargs['user_pk'])
+        if user in blog.likes.all():
+            blog.likes.remove(user)
+            message(user.name + " unliked the blog '{}'".format(blog.title))
+        else:
+            blog.likes.add(user)
+            message(user.name + " liked the blog '{}'".format(blog.title))
+        return Response(status=status.HTTP_200_OK)

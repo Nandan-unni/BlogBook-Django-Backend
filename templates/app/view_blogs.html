@@ -22,12 +22,18 @@
         <a href="{% url 'logout' %}"><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
         <a href="{% url 'view_account' user.username 'blogs' %}"><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
         <a href="{% url 'search_account' %}"><i class="material-icons">person_add_alt_1</i><br/><z>Search</z></a>
-        <a href="{% url 'search_account' %}"><i class="material-icons">chat</i><br/><z>Message</z></a>
-        <a href="{% url 'create_blog' %}"><i class="material-icons">edit</i><br/><z>New Blog</z></a>
+        <a href="{% url 'create_blog' %}"><i class="material-icons">create</i><br/><z>New Blog</z></a>
+        <a href="https://keyblogs.web.app"><i class="material-icons">emoji_objects</i><br/><z>New Site</z></a>
         {% if user.is_superuser %}
             <a href="/admin/"><i class="material-icons">construction</i><br/><z>API</z></a>
         {% endif %}
-    </div>
+    </div><br/>
+    <center><div class="notice">
+        <a href="https://keyblogs.web.app"><i class="material-icons">phone_android</i>
+        <i class="material-icons">laptop_mac</i>
+        <i class="material-icons">tablet_mac</i></a>
+        <p>You can start using the new version of KeyBlogs website at <br/><br/> <a href="https://keyblogs.web.app">https://keyblogs.web.app</a></p>
+    </div></center>
 
     {% for blog in blogs %}
         <div class="blogs">

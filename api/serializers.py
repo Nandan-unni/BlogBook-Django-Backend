@@ -14,13 +14,21 @@ class CreateBlogSerializer(serializers.ModelSerializer):
         model = Blog
         fields = ['title', 'content', 'is_published']
 
+class AccountTagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ['name', 'username', 'dp']
+
 class BlogSerializer(serializers.ModelSerializer):
+    likes = AccountTagSerializer(many=True)
     class Meta:
         model = Blog
         fields = ['pk', 'author', 'author_pname', 'title', 'content', 'likes', 'no_of_likes', 'is_published']
 
 class AccountSerializer(serializers.ModelSerializer):
     blogs = BlogSerializer(many=True)
+    followers = AccountTagSerializer(many=True)
+    following = AccountTagSerializer(many=True)
     class Meta:
         model = get_user_model()
         fields = ['pk', 'name', 'username', 'email',

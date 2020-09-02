@@ -24,7 +24,7 @@ body {
 }
 .head {
     font-family: 'Electrolize', sans-serif;
-    font-size: 3vh;
+    font-size: 2.4vh;
     margin-left: 10vw;
     justify-content: space-between;
 }
@@ -87,7 +87,7 @@ body {
 
 @media only screen and (max-width: 600px) {
     .navbar a, .navbarpro a {
-        padding: 0.8vh 1vw 0.8vh 1vw;
+        padding: 0.8vh 0vw 0.8vh 0vw;
         width: 15vw;
     }
     .navbar z, .navbarpro z {
@@ -391,4 +391,29 @@ body {
 .search-results ash {
     color: gray;
     font-size: 1.5vh;
+}
+
+.notice {
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(153, 169, 189);
+    color: rgb(0, 30, 70);
+    height: fit-content;
+    width:fit-content;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    padding: 3vh 2vw 3vh 2vw;
+    border-radius: 1vh;
+}
+.notice p {
+    font-size: 2vh;
+}
+.notice a {
+    color: rgb(0, 30, 70);
+    text-decoration: none;
+    font-size: 2.5vh;
+    font-weight: 900;
+}
+.notice i {
+    color: rgb(100, 15, 0);
 }
