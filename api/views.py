@@ -40,22 +40,26 @@ class CreateAccountAPI(views.APIView):
         message(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
 
-class ManageAccountAPI(generics.RetrieveUpdateDestroyAPIView):
+class ManageAccountAPI(generics.RetrieveUpdateAPIView):
     serializer_class = AccountSerializer
     queryset = get_user_model().objects.all()
     lookup_field = "username"
-    def delete(self, request, *args, **kwargs):
-        email = request.user.email
-        password = request.data.get('password')
+
+class DeleteAccountAPI(views.APIView):
+    def post(self, request, *args, **kwargs):
+        email = get_user_model().objects.get(username=kwargs['username']).email
+        password = request.data.get('password', None)
         user = authenticate(email=email, password=password)
         if user is not None:
-            return super().delete(self, request, *args, **kwargs)
+            message(user.username + ' deleted their account.')
+            user.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 class CreateBlogAPI(views.APIView):
     def post(self, request, format=None):
         blog = Blog(
-            author=get_user_model().objects.get(email='unni@key.in'),
+            author=get_user_model().objects.get(pk=request.data.get('author')),
             title=request.data.get('title'),
             content=request.data.get('content'),
             is_published=request.data.get('is_published')
@@ -82,4 +86,5 @@ class LikeBlogAPI(views.APIView):
         else:
             blog.likes.add(user)
             message(user.name + " liked the blog '{}'".format(blog.title))
-        return Response(status=status.HTTP_200_OK)
+        serializer = BlogSerializer(Blog.objects.filter(is_published=True).order_by('-pub_time'), many=True)
+        return Response(status=status.HTTP_200_OK, data=serializer.data)

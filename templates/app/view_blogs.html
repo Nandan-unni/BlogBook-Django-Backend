@@ -21,7 +21,6 @@
     <div id="navbar" class="navbar">
         <a href="{% url 'logout' %}"><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
         <a href="{% url 'view_account' user.username 'blogs' %}"><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
-        <a href="{% url 'search_account' %}"><i class="material-icons">person_add_alt_1</i><br/><z>Search</z></a>
         <a href="{% url 'create_blog' %}"><i class="material-icons">create</i><br/><z>New Blog</z></a>
         <a href="https://keyblogs.web.app"><i class="material-icons">emoji_objects</i><br/><z>New Site</z></a>
         {% if user.is_superuser %}
