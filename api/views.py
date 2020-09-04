@@ -33,7 +33,7 @@ class CreateAccountAPI(views.APIView):
             token = email_auth_token.make_token(user)
             link = 'http://{}/api/account/activate/{}/{}'.format(site.domain, uid, token)
             email_subject = 'Confirm your account'
-            mail = render_to_string('app/activateMail.html', {'link':link, 'user':user})
+            mail = render_to_string('admin/activateMail.html', {'link':link, 'user':user})
             to_email = user.email
             email = EmailMessage(email_subject, mail, from_email='Key Blogs', to=[to_email])
             email.content_subtype = 'html'
