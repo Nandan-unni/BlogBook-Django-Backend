@@ -6,8 +6,8 @@ This is a website where you can write and publish Blogs. <br />
 
 **1.** Email Login <br />
 **2.** Email Verification <br />
-**3.** API to Create, Edit, View and Delete Accounts <br />
-**4.** API to Create, Edit, View and Delete Blogs <br />
+**3.** API to Create, Read, Update and Delete Accounts <br />
+**4.** API to Create, Read, Update and Delete Blogs <br />
 **5.** Searching and Messaging users <br />
 **6.** Like and Bookmark blogs <br />
 
