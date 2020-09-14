@@ -1,20 +1,17 @@
 import os
 
-AUTH_USER_MODEL = 'app.Writer'
+AUTH_USER_MODEL = 'writers.Writer'
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 TEMPLATE_ROOT = os.path.join(BASE_DIR, 'templates')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-#SECRET_KEY = '=g#q8kmb3sg-y1nu@z15ox5h!8mou3mgv5jyuc669fd%!^tk*p'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
-COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+SECRET_KEY = 'g@&2cyhhbwm!7@qpj8j)#lrhx)e4_(c-!jmm#8eg12r#m0u)oq'
+
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.43.63', 'localhost', '.herokuapp.com']
+CORS_ORIGIN_ALLOW_ALL = False
+ALLOWED_HOSTS = ['localhost']
+CORS_ORIGIN_WHITELIST = ('http://localhost:3000', 'https://keyblogs.web.app')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -25,29 +22,28 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    'app'
+    'writers',
+    'blogs',
+    'features'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
 ]
 
-CORS_ORIGIN_ALLOW_ALL = False
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'argon.intelligence@gmail.com'
+EMAIL_HOST_PASSWORD = '1806@two000'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
-    'https://keyblogs.web.app'
-)
-
-ROOT_URLCONF = 'key_blogs.urls'
+ROOT_URLCONF = 'keyblogs.urls'
 
 TEMPLATES = [
     {
@@ -65,7 +61,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'key_blogs.wsgi.application'
+WSGI_APPLICATION = 'keyblogs.wsgi.application'
+
 
 DATABASES = {
     'default': {
@@ -73,6 +70,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -91,27 +89,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'Asia/Kolkata'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-LOGIN_URL = '/login/'
-
-
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'argon.intelligence@gmail.com'
-EMAIL_HOST_PASSWORD = '1806@two000'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)

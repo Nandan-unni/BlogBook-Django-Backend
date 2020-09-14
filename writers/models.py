@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from datetime import datetime
+from blogs.models import Blog
 
 class WriterManager(BaseUserManager):
     def create_user(self, name, email, password=None):
@@ -16,7 +16,7 @@ class WriterManager(BaseUserManager):
         )
         user.set_password(password)
         user.save(using=self._db)
-        print('User Created.')
+        print('User created successfully.')
         return user
 
     def create_superuser(self, name, email, password=None):
@@ -40,6 +40,10 @@ class Writer(AbstractUser):
                                        related_name='Following',
                                        blank=True,
                                        symmetrical=False)
+    saved = models.ManyToManyField(Blog,
+                                   related_name="bookmarked",
+                                   blank=True,
+                                   symmetrical=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
@@ -70,40 +74,3 @@ class Writer(AbstractUser):
     
     def blogs(self):
         return self.blog_set.all()
-
-
-class Blog(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=40, blank=False, null=False)
-    content = models.TextField()
-    is_published = models.BooleanField(default=True)
-    pub_date = models.DateField(auto_now_add=True)
-    pub_time = models.DateTimeField(auto_now_add=True)
-    mod_date = models.DateField(auto_now=True)
-    likes = models.ManyToManyField(settings.AUTH_USER_MODEL,
-                                   related_name="likers",
-                                   blank=True,
-                                   symmetrical=False)
-
-    class Meta:
-        verbose_name = 'Blog'
-        verbose_name_plural = 'Blogs'
-
-    def __str__(self):
-        return self.title
-    
-    def author_pname(self):
-        return self.author.username
-
-    def no_of_likes(self):
-        if self.likes.count():
-            if self.likes.count() == 1:
-                return self.likes.count()
-            return self.likes.count()
-        return 0
-
-class Message(models.Model):
-    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='Sender')
-    reciever = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='Reciever')
-    text = models.CharField('Message', max_length=60, blank=False, null=False)
-    send_time = models.DateTimeField(auto_now_add=True)

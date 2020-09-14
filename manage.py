@@ -2,11 +2,10 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from colorama import Fore, Style
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'key_blogs.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'keyblogs.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -19,6 +18,4 @@ def main():
 
 
 if __name__ == '__main__':
-    print(Fore.MAGENTA, Style.BRIGHT, '\n\b\b[#]', Fore.RED, 'Starting Server', Style.RESET_ALL)
     main()
-    print(Fore.MAGENTA, Style.BRIGHT, '\b\b[#]', Fore.RED, 'Stopping Server', Style.RESET_ALL)

@@ -1,44 +1,35 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
-from app.models import Blog
+from blogs.serializers import BlogSerializer
 
-class CreateUserSerializer(serializers.ModelSerializer):
+class CreateWriterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8)
     class Meta:
         model = get_user_model()
         fields = ['name', 'email', 'username', 'password']
-    
+
     def create(self, validated_data):
         user = super().create(validated_data)
         user.set_password(validated_data['password'])
         user.save()
         return user
 
-class CreateBlogSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Blog
-        fields = ['title', 'content', 'is_published']
-
-class AccountTagSerializer(serializers.ModelSerializer):
+class MiniWriterSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ['name', 'username', 'dp']
 
-class BlogSerializer(serializers.ModelSerializer):
-    likes = AccountTagSerializer(many=True)
-    class Meta:
-        model = Blog
-        fields = ['pk', 'author', 'author_pname', 'title', 'content', 'likes', 'no_of_likes', 'is_published']
-
-class AccountSerializer(serializers.ModelSerializer):
+class WriterSerializer(serializers.ModelSerializer):
     blogs = BlogSerializer(many=True)
-    followers = AccountTagSerializer(many=True)
-    following = AccountTagSerializer(many=True)
+    saved = BlogSerializer(many=True)
+    followers = MiniWriterSerializer(many=True)
+    following = MiniWriterSerializer(many=True)
     class Meta:
         model = get_user_model()
         fields = ['pk', 'name', 'username', 'email',
-                  'bio', 'dp',
+                  'bio', 'dp', 'is_superuser',
                   'followers', 'no_of_followers',
                   'following', 'no_of_following',
-                  'blogs', 'no_of_blogs']
+                  'blogs', 'no_of_blogs',
+                  'saved']
