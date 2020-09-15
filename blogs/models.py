@@ -12,6 +12,10 @@ class Blog(models.Model):
                                    related_name="likes",
                                    blank=True,
                                    symmetrical=False)
+    saves = models.ManyToManyField(settings.AUTH_USER_MODEL,
+                                   related_name="saves",
+                                   blank=True,
+                                   symmetrical=False)
 
     class Meta:
         verbose_name = 'Blog'

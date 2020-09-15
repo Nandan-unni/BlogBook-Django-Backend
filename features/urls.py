@@ -3,7 +3,8 @@ from features.views import (LoginAPI,
                             LogoutAPI,
                             FeedAPI,
                             SearchAPI,
-                            MessageAPI)
+                            MessageAPI,
+                            NotificationAPI,)
 
 urlpatterns = [
     path('login/', LoginAPI.as_view(), name='login'),
@@ -11,4 +12,5 @@ urlpatterns = [
     path('feed/', FeedAPI.as_view(), name='feed'),
     path('search/', SearchAPI.as_view(), name='search'),
     path('message/', MessageAPI.as_view(), name='message'),
+    path('notifications/', NotificationAPI.as_view(), name='notification')
 ]

@@ -33,7 +33,7 @@ class CreateWriterAPI(views.APIView):
             token = email_auth_token.make_token(user)
             link = 'http://{}/api/writer/activate/{}/{}'.format(site.domain, uid, token)
             email_subject = 'Confirm your account'
-            mail = render_to_string('admin/activateMail.html', {'link':link, 'user':user})
+            mail = render_to_string('activateMail.html', {'link':link, 'user':user})
             to_email = user.email
             email = EmailMessage(email_subject, mail, from_email='Key Blogs', to=[to_email])
             email.content_subtype = 'html'
@@ -92,3 +92,17 @@ class DeleteWriterAPI(views.APIView):
             user.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+class FollowWriterAPI(views.APIView):
+    def get(self, request, *args, **kwargs):
+        user = get_user_model().objects.get(pk=kwargs['user_pk'])
+        writer = get_user_model().objects.get(pk=kwargs['writer_pk'])
+        if user in writer.followers.all():
+            writer.followers.remove(user)
+            user.following.remove(writer)
+            message(user.username + ' unfollowed ' + writer.username)
+        else:
+            writer.followers.add(user)
+            user.following.add(writer)
+            message(user.username + ' followed ' + writer.username)
+        return Response(status=status.HTTP_200_OK)

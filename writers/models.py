@@ -40,10 +40,6 @@ class Writer(AbstractUser):
                                        related_name='Following',
                                        blank=True,
                                        symmetrical=False)
-    saved = models.ManyToManyField(Blog,
-                                   related_name="bookmarked",
-                                   blank=True,
-                                   symmetrical=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
@@ -72,5 +68,8 @@ class Writer(AbstractUser):
     def no_of_blogs(self):
         return self.blog_set.count()
     
-    def blogs(self):
+    def pub_blogs(self):
         return self.blog_set.all()
+    
+    def saved_blogs(self):
+        return Blog.objects.filter(settings.AUTH_USER_MODEL.objects.get(username=self.username) in Blog.objects.saves)

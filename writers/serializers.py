@@ -31,5 +31,5 @@ class WriterSerializer(serializers.ModelSerializer):
                   'bio', 'dp', 'is_superuser',
                   'followers', 'no_of_followers',
                   'following', 'no_of_following',
-                  'blogs', 'no_of_blogs',
-                  'saved']
+                  'pub_blogs', 'no_of_blogs',
+                  'saved_blogs']
