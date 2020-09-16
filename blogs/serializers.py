@@ -15,8 +15,10 @@ class MiniWriterSerializer(serializers.ModelSerializer):
 
 class BlogSerializer(serializers.ModelSerializer):
     likes = MiniWriterSerializer(many=True)
+    saves = MiniWriterSerializer(many=True)
     author = MiniWriterSerializer()
     class Meta:
         model = Blog
         fields = ['pk', 'author',
-                  'title', 'content', 'likes', 'no_of_likes', 'is_published']
+                  'title', 'content', 'likes', 'no_of_likes',
+                  'saves', 'is_published']

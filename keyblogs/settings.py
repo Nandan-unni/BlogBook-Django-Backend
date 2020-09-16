@@ -4,13 +4,16 @@ AUTH_USER_MODEL = 'writers.Writer'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_ROOT = os.path.join(BASE_DIR, 'templates')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SECRET_KEY = 'g@&2cyhhbwm!7@qpj8j)#lrhx)e4_(c-!jmm#8eg12r#m0u)oq'
 
 DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL = False
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '.herokuapp.com']
 CORS_ORIGIN_WHITELIST = ('http://localhost:3000', 'https://keyblogs.web.app')
 
 INSTALLED_APPS = [
@@ -24,11 +27,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'writers',
     'blogs',
-    'features'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -97,3 +100,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)

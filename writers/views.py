@@ -1,7 +1,7 @@
 from rest_framework import generics, views, status
 from rest_framework.response import Response
 from django.shortcuts import redirect
-from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth import get_user_model, authenticate, login, logout
 # Email sending and auth requirements
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
@@ -12,15 +12,42 @@ from django.core.mail import EmailMessage
 from colorama import Fore, Style
 
 # local
-from writers.serializers import CreateWriterSerializer, WriterSerializer
+from writers.serializers import SignupSerializer, WriterSerializer, MiniWriterSerializer
 from writers.token import email_auth_token
 
 def message(msg):
     print(Fore.MAGENTA, Style.BRIGHT, '\b\b[#]', Fore.RED, msg, Style.RESET_ALL)
 
+
+
+class LoginWriterAPI(views.APIView):
+    def post(self, request, *args, **kwargs):
+        data = request.data
+        email = data.get('email', None)
+        password = data.get('password', None)
+        user = authenticate(email=email, password=password)
+        if user is not None:
+            login(request, user)
+            message(user.name + ' logged in.')
+            serializer = WriterSerializer(user)
+            return Response(status=status.HTTP_200_OK, data=serializer.data)
+        message('User not found.')
+        return Response(status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
+
+
+
+class LogoutWriterAPI(views.APIView):
+    def get(self, request, **kwargs):
+        user = get_user_model().objects.get(pk=kwargs['pk'])
+        message(user.name + ' logged out. ')
+        logout(request)
+        return Response(status=status.HTTP_200_OK)
+
+
+
 class CreateWriterAPI(views.APIView):
     def post(self, request, *args, **kwargs):
-        serializer = CreateWriterSerializer(data=request.data)
+        serializer = SignupSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
             user.name = user.name.title()
@@ -43,6 +70,8 @@ class CreateWriterAPI(views.APIView):
         message(serializer.errors)
         return Response(data=serializer.errors, status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
 
+
+
 class ActivateWriterAPI(views.APIView):
     def get(self, request, *args, **kwargs):
         uidb64 = kwargs['uidb64']
@@ -64,6 +93,8 @@ class ActivateWriterAPI(views.APIView):
         #link = 'http://localhost:3000/invalid'
         return redirect(link)
 
+
+
 class SetupWriterAPI(views.APIView):
     def post(self, request, *args, **kwargs):
         user = get_user_model().objects.get(pk=kwargs['pk'])
@@ -77,10 +108,14 @@ class SetupWriterAPI(views.APIView):
         user.save()
         return Response(status=status.HTTP_200_OK)
 
+
+
 class ManageWriterAPI(generics.RetrieveUpdateAPIView):
     serializer_class = WriterSerializer
     queryset = get_user_model().objects.all()
     lookup_field = "username"
+
+
 
 class DeleteWriterAPI(views.APIView):
     def post(self, request, *args, **kwargs):
@@ -91,7 +126,9 @@ class DeleteWriterAPI(views.APIView):
             message(user.username + ' deleted their account.')
             user.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
+        return Response(status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
+
+
 
 class FollowWriterAPI(views.APIView):
     def get(self, request, *args, **kwargs):
@@ -106,3 +143,18 @@ class FollowWriterAPI(views.APIView):
             user.following.add(writer)
             message(user.username + ' followed ' + writer.username)
         return Response(status=status.HTTP_200_OK)
+
+
+
+class SearchWriterAPI(views.APIView):
+
+    def post(self, request, **kwargs):
+        writer = request.POST['username']
+        bloggers = get_user_model().objects.filter(username=writer)
+        serializer = MiniWriterSerializer(data=bloggers)
+        return Response(status=status.HTTP_200_OK, data=serializer.data)
+
+    def get(self, request, **kwargs):
+        bloggers = get_user_model().objects.all()
+        serializer = MiniWriterSerializer(data=bloggers)
+        return Response(status=status.HTTP_200_OK, data=serializer.data)

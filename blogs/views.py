@@ -27,25 +27,29 @@ class ManageBlogAPI(generics.RetrieveUpdateDestroyAPIView):
 class LikeBlogAPI(views.APIView):
     def get(self, request, **kwargs):
         blog = Blog.objects.get(pk=kwargs['blog_pk'])
-        user = get_user_model().objects.get(pk=kwargs['user_pk'])
+        user = get_user_model().objects.get(pk=kwargs['writer_pk'])
         if user in blog.likes.all():
             blog.likes.remove(user)
             message(user.username + " unliked the blog '{}'".format(blog.title))
         else:
             blog.likes.add(user)
             message(user.username + " liked the blog '{}'".format(blog.title))
-        serializer = BlogSerializer(Blog.objects.filter(is_published=True).order_by('-pub_time'), many=True)
+        serializer = BlogSerializer(Blog.objects.filter(is_published=True).order_by('-pub_date'), many=True)
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
 class SaveBlogAPI(views.APIView):
     def get(self, request, **kwargs):
         blog = Blog.objects.get(pk=kwargs['blog_pk'])
-        user = get_user_model().objects.get(pk=kwargs['user_pk'])
+        user = get_user_model().objects.get(pk=kwargs['writer_pk'])
         if user in blog.saves.all():
             blog.saves.remove(user)
             message(user.username + " unsaved the blog '{}'".format(blog.title))
         else:
             blog.saves.add(user)
             message(user.username + " saved the blog '{}'".format(blog.title))
-        serializer = BlogSerializer(Blog.objects.filter(is_published=True).order_by('-pub_time'), many=True)
+        serializer = BlogSerializer(Blog.objects.filter(is_published=True).order_by('-pub_date'), many=True)
         return Response(status=status.HTTP_200_OK, data=serializer.data)
+
+class FeedAPI(generics.ListAPIView):
+    serializer_class = BlogSerializer
+    queryset = Blog.objects.filter(is_published=True).order_by('-pub_date')

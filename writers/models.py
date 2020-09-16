@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from blogs.models import Blog
 
@@ -72,4 +73,4 @@ class Writer(AbstractUser):
         return self.blog_set.all()
     
     def saved_blogs(self):
-        return Blog.objects.filter(settings.AUTH_USER_MODEL.objects.get(username=self.username) in Blog.objects.saves)
+        return Blog.objects.filter(saves__id=self.pk)

@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 
 from blogs.serializers import BlogSerializer
 
-class CreateWriterSerializer(serializers.ModelSerializer):
+class SignupSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8)
     class Meta:
         model = get_user_model()
@@ -21,8 +21,8 @@ class MiniWriterSerializer(serializers.ModelSerializer):
         fields = ['name', 'username', 'dp']
 
 class WriterSerializer(serializers.ModelSerializer):
-    blogs = BlogSerializer(many=True)
-    saved = BlogSerializer(many=True)
+    pub_blogs = BlogSerializer(many=True)
+    saved_blogs = BlogSerializer(many=True)
     followers = MiniWriterSerializer(many=True)
     following = MiniWriterSerializer(many=True)
     class Meta:
