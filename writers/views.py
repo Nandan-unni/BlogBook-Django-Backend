@@ -86,11 +86,9 @@ class ActivateWriterAPI(views.APIView):
             message(user.username + ' activated their account.')
             user.save()
             link = 'https://keyblogs.web.app/writer/setup/{}'.format(user.username)
-            #link = 'http://localhost:3000/penName/{}'.format(user.username)
             return redirect(link)
         message('Invalid email verification link recieved.')
         link = 'https://keyblogs.web.app/invalid'
-        #link = 'http://localhost:3000/invalid'
         return redirect(link)
 
 
