@@ -16,7 +16,6 @@ class CreateBlogAPI(views.APIView):
             is_published=request.data.get('is_published')
         )
         blog.save()
-        print(request.data)
         return Response(status=status.HTTP_200_OK)
 
 

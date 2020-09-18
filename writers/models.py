@@ -70,7 +70,10 @@ class Writer(AbstractUser):
         return self.blog_set.count()
     
     def pub_blogs(self):
-        return self.blog_set.all()
-    
+        return self.blog_set.filter(is_published=True)
+
+    def arch_blogs(self):
+        return self.blog_set.filter(is_published=False)
+
     def saved_blogs(self):
         return Blog.objects.filter(saves__id=self.pk)

@@ -149,12 +149,12 @@ class FollowWriterAPI(views.APIView):
 class SearchWriterAPI(views.APIView):
 
     def post(self, request, **kwargs):
-        writer = request.POST['username']
+        writer = request.data.get('username')
         bloggers = get_user_model().objects.filter(username=writer)
-        serializer = MiniWriterSerializer(data=bloggers)
+        serializer = MiniWriterSerializer(bloggers, many=True)
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
     def get(self, request, **kwargs):
         bloggers = get_user_model().objects.all()
-        serializer = MiniWriterSerializer(data=bloggers)
+        serializer = MiniWriterSerializer(bloggers, many=True)
         return Response(status=status.HTTP_200_OK, data=serializer.data)

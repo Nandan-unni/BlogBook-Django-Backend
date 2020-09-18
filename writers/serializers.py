@@ -22,6 +22,7 @@ class MiniWriterSerializer(serializers.ModelSerializer):
 
 class WriterSerializer(serializers.ModelSerializer):
     pub_blogs = BlogSerializer(many=True)
+    arch_blogs = BlogSerializer(many=True)
     saved_blogs = BlogSerializer(many=True)
     followers = MiniWriterSerializer(many=True)
     following = MiniWriterSerializer(many=True)
@@ -32,4 +33,4 @@ class WriterSerializer(serializers.ModelSerializer):
                   'followers', 'no_of_followers',
                   'following', 'no_of_following',
                   'pub_blogs', 'no_of_blogs',
-                  'saved_blogs']
+                  'arch_blogs', 'saved_blogs']

@@ -20,7 +20,7 @@ This is a website where you can write and publish Blogs. <br />
 
 ## Frontend
 
-**Reactjs** serves the frontend and antd is also used to design the UI. Axios is used to make API calls. The source code for frontend can be found in the repo [KeyBlogs Django Frontend](https://github.com/nandan-unni/KeyBlogs-React-Frontend) <br />
+**Reactjs** serves the frontend and antd is also used to design the UI. Axios is used to make API calls. The source code for frontend can be found in the repo [KeyBlogs React Frontend](https://github.com/nandan-unni/KeyBlogs-React-Frontend) <br />
 
 ## Status
 
