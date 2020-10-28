@@ -5,8 +5,15 @@ AUTH_USER_MODEL = 'writers.Writer'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_ROOT = os.path.join(BASE_DIR, 'templates')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+MODE = "DEV"
+
+if MODE == "DEV":
+    STATIC_DIR = os.path.join(BASE_DIR, 'static')
+    STATICFILES_DIRS = [STATIC_DIR, ]
+
+if MODE == "PROD":
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SECRET_KEY = 'g@&2cyhhbwm!7@qpj8j)#lrhx)e4_(c-!jmm#8eg12r#m0u)oq'
 

@@ -9,7 +9,7 @@ This is a website where you can write and publish Blogs. <br />
 **3.** API to Create, Read, Update and Delete Accounts <br />
 **4.** API to Create, Read, Update and Delete Blogs <br />
 **5.** Search and Follow users <br />
-**6.** Like and Bookmark blogs <br />
+**6.** Like and Save blogs <br />
 
 ## Tech
 
