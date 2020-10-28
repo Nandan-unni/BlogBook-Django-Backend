@@ -5,7 +5,7 @@ AUTH_USER_MODEL = 'writers.Writer'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_ROOT = os.path.join(BASE_DIR, 'templates')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MODE = "PROD"
+MODE = "DEV"
 
 if MODE == "DEV":
     STATIC_DIR = os.path.join(BASE_DIR, 'static')
