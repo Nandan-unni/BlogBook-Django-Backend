@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 # dev tools
 from colorama import Fore, Style
+import smtplib
 
 # local
 from writers.serializers import SignupSerializer, WriterSerializer, MiniWriterSerializer
@@ -64,8 +65,14 @@ class CreateWriterAPI(views.APIView):
             to_email = user.email
             email = EmailMessage(email_subject, mail, from_email='Key Blogs', to=[to_email])
             email.content_subtype = 'html'
-            email.send()
-            message('Email send to ' + user.username)
+            try:
+                email.send()
+                message('Email send to ' + user.username)
+            except smtplib.SMTPAuthenticationError:
+                user.is_active = True
+                user.save()
+                message('GMail auth failed')
+                return Response(status=status.HTTP_204_NO_CONTENT)
             return Response(status=status.HTTP_201_CREATED)
         message(serializer.errors)
         return Response(data=serializer.errors, status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
