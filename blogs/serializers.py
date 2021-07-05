@@ -28,6 +28,7 @@ class BlogSerializer(serializers.ModelSerializer):
             "author",
             "title",
             "content",
+            "summary",
             "likes",
             "no_of_likes",
             "saves",

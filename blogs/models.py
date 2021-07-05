@@ -6,6 +6,7 @@ class Blog(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=40, blank=False, null=False)
     content = models.TextField()
+    summary = models.TextField()
     is_published = models.BooleanField(default=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     mod_date = models.DateTimeField(auto_now=True)

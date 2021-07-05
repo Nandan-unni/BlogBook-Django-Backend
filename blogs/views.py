@@ -1,3 +1,4 @@
+from blogs.utils import get_summary
 from rest_framework import generics, views, status
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
@@ -13,6 +14,7 @@ class CreateBlogAPI(views.APIView):
             author=get_user_model().objects.get(pk=request.data.get("author")),
             title=request.data.get("title"),
             content=request.data.get("content"),
+            summary=get_summary(request.data.get("content")),
             is_published=request.data.get("is_published"),
         )
         blog.save()
