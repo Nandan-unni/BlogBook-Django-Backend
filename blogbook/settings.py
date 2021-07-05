@@ -5,6 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / "templates"
 MEDIA_DIR = BASE_DIR / "media"
 STATIC_DIR = BASE_DIR / "static"
+STATIC_ROOT = BASE_DIR / "static"
 STATIC_URL = "/static/"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATICFILES_DIRS = [
