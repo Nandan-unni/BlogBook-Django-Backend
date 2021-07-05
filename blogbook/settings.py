@@ -15,7 +15,7 @@ if ENV == "DEV":
 
 if ENV == "PROD":
     STATIC_ROOT = BASE_DIR / "static"
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
     DEBUG = False
 
 AUTH_USER_MODEL = "writers.Writer"
