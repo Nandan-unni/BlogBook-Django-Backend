@@ -1,22 +1,26 @@
 from pathlib import Path
 import dj_database_url
 
+ENV = "PROD"
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / "templates"
 MEDIA_DIR = BASE_DIR / "media"
-STATIC_DIR = BASE_DIR / "static"
-STATIC_ROOT = BASE_DIR / "static"
 STATIC_URL = "/static/"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATICFILES_DIRS = [
-    STATIC_DIR,
-]
+
+if ENV == "DEV":
+    STATIC_DIR = BASE_DIR / "static"
+    STATICFILES_DIRS = [STATIC_DIR]
+    DEBUG = True
+
+if ENV == "PROD":
+    STATIC_ROOT = BASE_DIR / "static"
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    DEBUG = False
 
 AUTH_USER_MODEL = "writers.Writer"
 
 SECRET_KEY = "django-insecure-q0-mimlxlphjz5*p+t7396%xp&&hh3wsfzp69(b0ugacg-*jx5"
-
-DEBUG = True
 
 
 CORS_ORIGIN_ALLOW_ALL = False
