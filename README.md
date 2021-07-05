@@ -1,4 +1,4 @@
-# 💡 [BlogBook](https://keyblogs.web.app) ✏️
+# 💡 [BlogBook](https://blogbook.web.app) ✏️
 
 This is a website where you can write and publish Blogs. <br />
 
@@ -25,4 +25,4 @@ This is a website where you can write and publish Blogs. <br />
 ## Status
 
 **\_>** The frontend is hosted on Firebase and is available at [BlogBook Website](https://blogbook.web.app)<br />
-**\_>** The backend is hosted on Heroku and is available at [BlogBook API](http://keyblogs.herokuapp.com/api/)<br />
+**\_>** The backend is hosted on Heroku and is available at [BlogBook API](http://blogbook.herokuapp.com/api/)<br />
