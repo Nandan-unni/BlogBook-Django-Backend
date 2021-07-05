@@ -1,48 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Electrolize&family=Montserrat&display=swap");
 body {
-    background-color: black;
-    overflow-x: hidden;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+  background-color: black;
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
-body::-webkit-scrollbar { /* Chrome, Safari, Opera */
-    display: none;
+body::-webkit-scrollbar {
+  /* Chrome, Safari, Opera */
+  display: none;
 }
 .header h1 {
-    color: tomato;
-    font-family: 'Electrolize', sans-serif;
-    font-size: 5vh;
-    font-weight: 900;
+  color: tomato;
+  font-family: "Electrolize", sans-serif;
+  font-size: 5vh;
+  font-weight: 900;
 }
 .header i {
-    font-size: 5vh;
-    padding: 3vh 2vw;
-    padding-top: 2.7vh;
-    color: dodgerblue;
+  font-size: 5vh;
+  padding: 3vh 2vw;
+  padding-top: 2.7vh;
+  color: dodgerblue;
 }
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -1.5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -1.5vh;
 }
 
 .endpoints p {
-    color: darkgray;
+  color: darkgray;
 }
 .endpoints a {
-    text-decoration: none;
-    color: dodgerblue;
-    padding-left: 3vw;
+  text-decoration: none;
+  color: dodgerblue;
+  padding-left: 3vw;
 }
 .endpoints a:hover {
-    color: tomato;
-    font-weight: 900;
-    cursor: pointer;
+  color: tomato;
+  font-weight: 900;
+  cursor: pointer;
 }
 .endpoints {
-    margin-left: 20vw;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2vw;
-    font-weight: 700;
+  margin-left: 20vw;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2vw;
+  font-weight: 700;
 }

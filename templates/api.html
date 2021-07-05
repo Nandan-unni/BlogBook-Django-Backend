@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" >
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <meta name="description" content="Application Program Interface of KeyBlogs Web App" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <meta
+      name="description"
+      content="Application Program Interface of KeyBlogs Web App"
+    />
     <link rel="icon" href="{% static 'img/favicon.ico' %}" />
     <title>KeyBlogs API</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="header">
-        <i class="material-icons">emoji_objects</i>
-        <h1>KeyBlogs API</h1>
-        <i class="material-icons">emoji_objects</i>
+      <i class="material-icons">emoji_objects</i>
+      <h1>KeyBlogs API</h1>
+      <i class="material-icons">emoji_objects</i>
     </div>
     <div class="endpoints">
-        <p>Admin : <a href="/admin/">admin/</a></p>
-        <p>API : <a href="/api/">api/</a></p>
-        <br />
-        <p>Login User : <a href="/api/writer/login/">api/writer/login/</a></p>
-        <p>Logout User : <a href="/api/">api/writer/logout/:pk/</a></p>
-        <p>Create User : <a href="/api/writer/create/">api/writer/create/</a></p>
-        <p>Activate User : <a href="/api/">api/writer/activate/:uidb64/:token/</a></p>
-        <p>Setup User : <a href="/api/">api/writer/setup/:pk/</a></p>
-        <p>Get and Update User : <a href="/api/">api/writer/manage/:username/</a></p>
-        <p>Delete User : <a href="/api/">api/writer/delete/:username/</a></p>
-        <p>Search User : <a href="/api/writer/search/">api/writer/search/</a></p>
-        <p>Follow User : <a href="/api/">api/writer/follow/:user_pk/:writer_pk/</a></p>
-        <br />
-        <p>Get Feed Blogs : <a href="/api/blog/feed/">api/blog/feed/</a></p>
-        <p>Create Blog : <a href="/api/blog/create/">api/blog/create/</a></p>
-        <p>Get, Update and Delete : <a href="/api/">api/blog/manage/:pk/</a></p>
-        <p>Like Blog : <a href="/api/">api/like/:writer_pk/:blog_pk/</a></p>
-        <p>Save Blog : <a href="/api/">api/save/:writer_pk/:blog_pk/</a></p>
+      <p>Admin : <a href="/admin/">admin/</a></p>
+      <p>API : <a href="/api/">api/</a></p>
+      <br />
+      <p>Login User : <a href="/api/writer/login/">api/writer/login/</a></p>
+      <p>Logout User : <a href="/api/">api/writer/logout/:pk/</a></p>
+      <p>Create User : <a href="/api/writer/create/">api/writer/create/</a></p>
+      <p>
+        Activate User : <a href="/api/">api/writer/activate/:uidb64/:token/</a>
+      </p>
+      <p>Setup User : <a href="/api/">api/writer/setup/:pk/</a></p>
+      <p>
+        Get and Update User : <a href="/api/">api/writer/manage/:username/</a>
+      </p>
+      <p>Delete User : <a href="/api/">api/writer/delete/:username/</a></p>
+      <p>Search User : <a href="/api/writer/search/">api/writer/search/</a></p>
+      <p>
+        Follow User : <a href="/api/">api/writer/follow/:user_pk/:writer_pk/</a>
+      </p>
+      <br />
+      <p>Get Feed Blogs : <a href="/api/blog/feed/">api/blog/feed/</a></p>
+      <p>Create Blog : <a href="/api/blog/create/">api/blog/create/</a></p>
+      <p>Get, Update and Delete : <a href="/api/">api/blog/manage/:pk/</a></p>
+      <p>Like Blog : <a href="/api/">api/like/:writer_pk/:blog_pk/</a></p>
+      <p>Save Blog : <a href="/api/">api/save/:writer_pk/:blog_pk/</a></p>
     </div>
-</body>
-
+  </body>
 </html>
