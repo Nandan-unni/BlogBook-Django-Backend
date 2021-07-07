@@ -2,6 +2,7 @@ from rest_framework import generics, views, status
 from rest_framework.response import Response
 from django.shortcuts import redirect
 from django.contrib.auth import get_user_model, authenticate, login, logout
+from django.db.models import Q
 
 # Email sending and auth requirements
 from django.utils.encoding import force_bytes
@@ -15,7 +16,12 @@ from colorama import Fore, Style
 import smtplib
 
 # local
-from writers.serializers import SignupSerializer, WriterSerializer, MiniWriterSerializer
+from writers.serializers import (
+    SignupSerializer,
+    WriterSerializer,
+    MiniWriterSerializer,
+    SearchWriterSerializer,
+)
 from writers.token import email_auth_token
 
 
@@ -155,11 +161,13 @@ class FollowWriterAPI(views.APIView):
 class SearchWriterAPI(views.APIView):
     def post(self, request, **kwargs):
         writer = request.data.get("username")
-        bloggers = get_user_model().objects.filter(username=writer)
-        serializer = MiniWriterSerializer(bloggers, many=True)
+        bloggers = get_user_model().objects.filter(
+            Q(username__contains=writer) | Q(name__contains=writer)
+        )
+        serializer = SearchWriterSerializer(bloggers, many=True)
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
     def get(self, request, **kwargs):
         bloggers = get_user_model().objects.all()
-        serializer = MiniWriterSerializer(bloggers, many=True)
+        serializer = SearchWriterSerializer(bloggers, many=True)
         return Response(status=status.HTTP_200_OK, data=serializer.data)

@@ -24,6 +24,14 @@ class MiniWriterSerializer(serializers.ModelSerializer):
         fields = ["name", "username", "dp"]
 
 
+class SearchWriterSerializer(serializers.ModelSerializer):
+    followers = MiniWriterSerializer(many=True)
+
+    class Meta:
+        model = get_user_model()
+        fields = ["pk", "name", "username", "dp", "followers"]
+
+
 class WriterSerializer(serializers.ModelSerializer):
     pub_blogs = BlogSerializer(many=True)
     arch_blogs = BlogSerializer(many=True)
