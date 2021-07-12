@@ -1,7 +1,8 @@
 from pathlib import Path
+from datetime import timedelta
 import dj_database_url
 
-ENV = "PROD"
+ENV = "DEV"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / "templates"
@@ -39,6 +40,21 @@ INSTALLED_APPS = [
     "writers",
     "blogs",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    )
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=15),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "USER_ID_FIELD": "pk",
+    "USER_ID_CLAIM": "user_pk",
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
