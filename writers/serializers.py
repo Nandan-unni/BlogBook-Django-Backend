@@ -18,6 +18,12 @@ class SignupSerializer(serializers.ModelSerializer):
         return user
 
 
+class EmailUsernameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ["email"]
+
+
 class MiniWriterSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()

@@ -1,6 +1,7 @@
 from django.urls import path
 from writers.views import (
     LoginWriterAPI,
+    UsernameAndEmails,
     LogoutWriterAPI,
     CreateWriterAPI,
     ActivateWriterAPI,
@@ -13,6 +14,7 @@ from writers.views import (
 
 urlpatterns = [
     path("login/", LoginWriterAPI.as_view(), name="signin"),
+    path("usernamesandemails/", UsernameAndEmails.as_view(), name="livecheck"),
     path("logout/<int:pk>/", LogoutWriterAPI.as_view(), name="signout"),
     path("create/", CreateWriterAPI.as_view(), name="signup"),
     path(

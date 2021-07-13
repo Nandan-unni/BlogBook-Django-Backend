@@ -1,4 +1,4 @@
-from rest_framework import generics, views, status
+from rest_framework import generics, serializers, views, status
 from rest_framework.response import Response
 from django.shortcuts import redirect
 from django.contrib.auth import get_user_model, authenticate, login, logout
@@ -19,7 +19,7 @@ import smtplib
 from writers.serializers import (
     SignupSerializer,
     WriterSerializer,
-    MiniWriterSerializer,
+    EmailUsernameSerializer,
     SearchWriterSerializer,
 )
 from writers.token import email_auth_token
@@ -50,6 +50,12 @@ class LogoutWriterAPI(views.APIView):
         message(user.name + " logged out. ")
         logout(request)
         return Response(status=status.HTTP_200_OK)
+
+
+class UsernameAndEmails(views.APIView):
+    def get(self, request, **kwargs):
+        serializer = EmailUsernameSerializer(get_user_model().objects.all(), many=True)
+        return Response(status=200, data=serializer.data)
 
 
 class CreateWriterAPI(views.APIView):
