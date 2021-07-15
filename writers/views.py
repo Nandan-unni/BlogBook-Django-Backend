@@ -134,7 +134,7 @@ class SetupWriterAPI(views.APIView):
 class ManageWriterAPI(generics.RetrieveUpdateAPIView):
     serializer_class = WriterSerializer
     queryset = get_user_model().objects.all()
-    lookup_field = "username"
+    lookup_field = "pk"
 
 
 class DeleteWriterAPI(views.APIView):
