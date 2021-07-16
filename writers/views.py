@@ -19,6 +19,7 @@ import smtplib
 from writers.serializers import (
     SignupSerializer,
     WriterSerializer,
+    FollowWriterSerializer,
     EmailUsernameSerializer,
     SearchWriterSerializer,
 )
@@ -161,7 +162,8 @@ class FollowWriterAPI(views.APIView):
             writer.followers.add(user)
             user.following.add(writer)
             message(user.username + " followed " + writer.username)
-        return Response(status=status.HTTP_200_OK)
+        serializer = FollowWriterSerializer(writer)
+        return Response(status=status.HTTP_200_OK, data=serializer.data)
 
 
 class SearchWriterAPI(views.APIView):

@@ -24,10 +24,27 @@ class EmailUsernameSerializer(serializers.ModelSerializer):
         fields = ["email"]
 
 
-class MiniWriterSerializer(serializers.ModelSerializer):
+class PkWriterSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ["pk", "name", "username", "dp"]
+        fields = ["pk"]
+
+
+class MiniWriterSerializer(serializers.ModelSerializer):
+    followers = PkWriterSerializer(many=True)
+
+    class Meta:
+        model = get_user_model()
+        fields = ["pk", "name", "username", "dp", "followers"]
+
+
+class FollowWriterSerializer(serializers.ModelSerializer):
+    followers = MiniWriterSerializer(many=True)
+    following = MiniWriterSerializer(many=True)
+
+    class Meta:
+        model = get_user_model()
+        fields = ["pk", "followers", "following"]
 
 
 class SearchWriterSerializer(serializers.ModelSerializer):
