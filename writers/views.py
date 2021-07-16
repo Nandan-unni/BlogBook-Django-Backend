@@ -1,4 +1,4 @@
-from rest_framework import generics, views, status
+from rest_framework import generics, serializers, views, status
 from rest_framework.response import Response
 from django.shortcuts import redirect
 from django.contrib.auth import get_user_model, authenticate, login, logout
@@ -19,7 +19,8 @@ import smtplib
 from writers.serializers import (
     SignupSerializer,
     WriterSerializer,
-    MiniWriterSerializer,
+    FollowWriterSerializer,
+    EmailUsernameSerializer,
     SearchWriterSerializer,
 )
 from writers.token import email_auth_token
@@ -50,6 +51,12 @@ class LogoutWriterAPI(views.APIView):
         message(user.name + " logged out. ")
         logout(request)
         return Response(status=status.HTTP_200_OK)
+
+
+class UsernameAndEmails(views.APIView):
+    def get(self, request, **kwargs):
+        serializer = EmailUsernameSerializer(get_user_model().objects.all(), many=True)
+        return Response(status=200, data=serializer.data)
 
 
 class CreateWriterAPI(views.APIView):
@@ -128,7 +135,7 @@ class SetupWriterAPI(views.APIView):
 class ManageWriterAPI(generics.RetrieveUpdateAPIView):
     serializer_class = WriterSerializer
     queryset = get_user_model().objects.all()
-    lookup_field = "username"
+    lookup_field = "pk"
 
 
 class DeleteWriterAPI(views.APIView):
@@ -155,7 +162,8 @@ class FollowWriterAPI(views.APIView):
             writer.followers.add(user)
             user.following.add(writer)
             message(user.username + " followed " + writer.username)
-        return Response(status=status.HTTP_200_OK)
+        serializer = FollowWriterSerializer(writer)
+        return Response(status=status.HTTP_200_OK, data=serializer.data)
 
 
 class SearchWriterAPI(views.APIView):

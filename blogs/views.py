@@ -36,9 +36,7 @@ class LikeBlogAPI(views.APIView):
         else:
             blog.likes.add(user)
             message(user.username + " liked the blog '{}'".format(blog.title))
-        serializer = BlogSerializer(
-            Blog.objects.filter(is_published=True).order_by("-pub_date"), many=True
-        )
+        serializer = BlogSerializer(blog)
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
 
@@ -52,9 +50,7 @@ class SaveBlogAPI(views.APIView):
         else:
             blog.saves.add(user)
             message(user.username + " saved the blog '{}'".format(blog.title))
-        serializer = BlogSerializer(
-            Blog.objects.filter(is_published=True).order_by("-pub_date"), many=True
-        )
+        serializer = BlogSerializer(blog)
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
 

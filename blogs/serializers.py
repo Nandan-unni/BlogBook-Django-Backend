@@ -13,7 +13,7 @@ class CreateBlogSerializer(serializers.ModelSerializer):
 class MiniWriterSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ["name", "username", "dp"]
+        fields = ["pk", "name", "username", "dp"]
 
 
 class BlogSerializer(serializers.ModelSerializer):
