@@ -11,6 +11,9 @@ def get_summary(content: str):
     soup = BeautifulSoup(content, features="html.parser")
     for tag in soup(["script", "style", "h1", "h2", "code"]):
         tag.extract()
+    for tag in soup.find_all():
+        if len(tag.get_text(strip=True)) == 0:
+            tag.extract()
     return soup.get_text().strip("\n").replace("\n", ". ").strip()
 
 
