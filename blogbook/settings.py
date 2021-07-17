@@ -27,6 +27,7 @@ SECRET_KEY = "django-insecure-q0-mimlxlphjz5*p+t7396%xp&&hh3wsfzp69(b0ugacg-*jx5
 CORS_ORIGIN_ALLOW_ALL = False
 ALLOWED_HOSTS = ["localhost", ".herokuapp.com"]
 CORS_ORIGIN_WHITELIST = ("http://localhost:3000", "https://blogbook.web.app")
+# CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://blogbook\w+\.web\.app$"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
