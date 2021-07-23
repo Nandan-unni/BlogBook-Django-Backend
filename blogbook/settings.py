@@ -2,7 +2,7 @@ from pathlib import Path
 from datetime import timedelta
 import dj_database_url
 
-ENV = "PROD"
+ENV = "DEV"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / "templates"
@@ -10,11 +10,15 @@ MEDIA_DIR = BASE_DIR / "media"
 STATIC_URL = "/static/"
 
 if ENV == "DEV":
+    API_URL = "http://localhost:8000/api"
+    CLIENT_URL = "http://localhost:3000"
     STATIC_DIR = BASE_DIR / "static"
     STATICFILES_DIRS = [STATIC_DIR]
     DEBUG = True
 
 if ENV == "PROD":
+    API_URL = "https://blogbookapi.herokuapp.com/api"
+    CLIENT_URL = "https://blogbook.web.app"
     STATIC_ROOT = BASE_DIR / "static"
     STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
     DEBUG = False
@@ -26,7 +30,7 @@ SECRET_KEY = "django-insecure-q0-mimlxlphjz5*p+t7396%xp&&hh3wsfzp69(b0ugacg-*jx5
 
 CORS_ORIGIN_ALLOW_ALL = False
 ALLOWED_HOSTS = ["localhost", ".herokuapp.com"]
-CORS_ORIGIN_WHITELIST = ("http://localhost:3000", "https://blogbook.web.app")
+CORS_ORIGIN_WHITELIST = (CLIENT_URL,)
 # CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://blogbook\w+\.web\.app$"]
 
 INSTALLED_APPS = [

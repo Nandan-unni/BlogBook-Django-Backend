@@ -73,11 +73,8 @@ class WriterSerializer(serializers.ModelSerializer):
             "dp",
             "is_superuser",
             "followers",
-            "no_of_followers",
             "following",
-            "no_of_following",
             "pub_blogs",
-            "no_of_blogs",
             "arch_blogs",
             "saved_blogs",
         ]

@@ -1,20 +1,33 @@
-demo = """<h1 style="text-align:center;"><span style="color: rgb(26,188,156);"><strong><em><ins>Test</ins></em></strong></span></h1>
-<h3><span style="color: rgb(250,197,28);"><strong><ins>Test</ins></strong></span></h3>
-<p>Test</p>
-<div style="text-align:left;"><img src="https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero.jpg" alt="undefined" style="height: auto;width: 100px"/></div>
-<p></p>
-"""
 from bs4 import BeautifulSoup
 
 
-def get_summary(content: str):
-    soup = BeautifulSoup(content, features="html.parser")
+def _remove_dots_and_spaces_(chars: list):
+    _prev_dot_ = False
+    summary = ""
+    for char in chars:
+        if char == ".":
+            if not _prev_dot_:
+                summary += char + " "
+            _prev_dot_ = True
+        elif char.endswith("."):
+            summary += char + " "
+            _prev_dot_ = True
+        else:
+            summary += char
+            _prev_dot_ = False
+    while True:
+        if summary.startswith("."):
+            summary = summary[1:]
+        else:
+            break
+    summary = summary.strip()
+    return summary
+
+
+def get_summary(rich_text: str):
+    soup = BeautifulSoup(rich_text, features="html.parser")
     for tag in soup(["script", "style", "h1", "h2", "code"]):
         tag.extract()
-    for tag in soup.find_all():
-        if len(tag.get_text(strip=True)) == 0:
-            tag.extract()
-    return soup.get_text().strip("\n").replace("\n", ". ").strip()
-
-
-get_summary(demo)
+    summary = soup.get_text().strip("\n").replace("\n", ". ").strip()
+    summary = _remove_dots_and_spaces_(summary.split())
+    return summary
