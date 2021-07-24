@@ -2,7 +2,7 @@ from pathlib import Path
 from datetime import timedelta
 import dj_database_url
 
-ENV = "DEV"
+ENV = "PROD"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / "templates"
