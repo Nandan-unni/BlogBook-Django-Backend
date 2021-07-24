@@ -24,7 +24,7 @@ class SignUpView(views.APIView):
         if serializer.is_valid():
             user = serializer.save()
             user.name = user.name.title()
-            user.is_active = False
+            user.is_active = True
             user.save()
             message(f"{user.name} ({user.pk}) created an account.")
 
