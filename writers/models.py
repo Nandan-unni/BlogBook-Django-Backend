@@ -47,6 +47,7 @@ class Writer(AbstractUser):
         symmetrical=False,
     )
     is_active = models.BooleanField(default=True)
+    is_email_verified = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
     objects = WriterManager()

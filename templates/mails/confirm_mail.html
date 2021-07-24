@@ -1,0 +1,64 @@
+<main>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+  </style>
+  <article
+    style="
+      width: 50%;
+      margin: auto;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 2px solid #ebebeb;
+      padding: 20px 30px 30px 30px;
+      color: black;
+      font-family: 'Montserrat', sans-serif;
+    "
+  >
+    <header>
+      <h1 style="font-size: 18px; margin-bottom: 20px">Hey {{ user_name }},</h1>
+    </header>
+    <div>
+      <p>
+        You have registered <b><i>{{ user_email }}</i></b> as the email for your
+        account in
+        <b>
+          <a
+            href="https:blogbook.web.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="
+              text-decoration: none;
+              color: tomato;
+              font-size: 16px;
+              font-weight: 900;
+            "
+          >
+            BlogBook
+          </a>
+        </b>
+        . Please click on the following button to confirm your email address and
+        activate your account.
+      </p>
+      <div style="display: flex; justify-content: center; margin: 30px 0">
+        <a
+          href="{{ token_link }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="
+            padding: 12px 18px;
+            background-color: dodgerblue;
+            border-radius: 5px;
+            color: white;
+            font-weight: 900;
+            text-decoration: none;
+          "
+        >
+          Confirm Email Address
+        </a>
+      </div>
+    </div>
+    <footer style="text-align: center; color: #646464">
+      If that wasn't you, please ignore the mail
+    </footer>
+  </article>
+</main>

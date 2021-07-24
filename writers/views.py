@@ -17,13 +17,11 @@ import smtplib
 
 # local
 from writers.serializers import (
-    SignupSerializer,
     WriterSerializer,
     FollowWriterSerializer,
     EmailUsernameSerializer,
     SearchWriterSerializer,
 )
-from writers.token import email_auth_token
 
 
 def message(msg):

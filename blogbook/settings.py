@@ -1,8 +1,12 @@
+import os
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url
+from dotenv import load_dotenv
 
-ENV = "PROD"
+load_dotenv()
+
+ENV = os.environ.get("APP_ENV", "PROD")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / "templates"
@@ -10,14 +14,14 @@ MEDIA_DIR = BASE_DIR / "media"
 STATIC_URL = "/static/"
 
 if ENV == "DEV":
-    API_URL = "http://localhost:8000/api"
+    API_URL = "http://localhost:8000"
     CLIENT_URL = "http://localhost:3000"
     STATIC_DIR = BASE_DIR / "static"
     STATICFILES_DIRS = [STATIC_DIR]
     DEBUG = True
 
 if ENV == "PROD":
-    API_URL = "https://blogbookapi.herokuapp.com/api"
+    API_URL = "https://blogbookapi.herokuapp.com"
     CLIENT_URL = "https://blogbook.web.app"
     STATIC_ROOT = BASE_DIR / "static"
     STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
@@ -25,7 +29,7 @@ if ENV == "PROD":
 
 AUTH_USER_MODEL = "writers.Writer"
 
-SECRET_KEY = "django-insecure-q0-mimlxlphjz5*p+t7396%xp&&hh3wsfzp69(b0ugacg-*jx5"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 CORS_ORIGIN_ALLOW_ALL = False
@@ -46,20 +50,20 @@ INSTALLED_APPS = [
     "blogs",
 ]
 
-# REST_FRAMEWORK = {
-#     "DEFAULT_AUTHENTICATION_CLASSES": (
-#         "rest_framework_simplejwt.authentication.JWTAuthentication",
-#     )
-# }
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    )
+}
 
-# SIMPLE_JWT = {
-#     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
-#     "REFRESH_TOKEN_LIFETIME": timedelta(days=15),
-#     "ROTATE_REFRESH_TOKENS": True,
-#     "BLACKLIST_AFTER_ROTATION": True,
-#     "USER_ID_FIELD": "pk",
-#     "USER_ID_CLAIM": "user_pk",
-# }
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=5),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "USER_ID_FIELD": "pk",
+    "USER_ID_CLAIM": "user_pk",
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -73,11 +77,11 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 ]
 
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "argon.intelligence@gmail.com"
-EMAIL_HOST_PASSWORD = "1806@two000"
-EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 
 ROOT_URLCONF = "blogbook.urls"
 

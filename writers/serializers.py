@@ -21,7 +21,7 @@ class SignupSerializer(serializers.ModelSerializer):
 class EmailUsernameSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ["email"]
+        fields = ["email", "username"]
 
 
 class PkWriterSerializer(serializers.ModelSerializer):
