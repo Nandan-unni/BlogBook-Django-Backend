@@ -85,6 +85,7 @@ class FollowWriterAPI(views.APIView):
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
 
+
 class SearchWriterAPI(views.APIView):
     def post(self, request, **kwargs):
         writer = request.data.get("username")
